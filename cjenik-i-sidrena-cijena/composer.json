@@ -34,6 +34,6 @@
 		"lint": "phpcs",
 		"lint:fix": "phpcbf",
 		"test": "phpunit",
-		"typecheck": "phpstan analyse --memory-limit=1G"
+		"typecheck": "phpstan analyse --memory-limit=2G"
 	}
 }

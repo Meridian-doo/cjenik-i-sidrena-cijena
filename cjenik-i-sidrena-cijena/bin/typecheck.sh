@@ -3,4 +3,4 @@
 set -euo pipefail
 cd "$(dirname "$0")/.."
 [ -d vendor ] || composer install --no-interaction --quiet
-exec vendor/bin/phpstan analyse --memory-limit=1G --no-progress "$@"
+exec vendor/bin/phpstan analyse --memory-limit=2G --no-progress "$@"
