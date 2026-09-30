@@ -1,0 +1,26 @@
+name: Release check
+
+# Keeps a readme, translation or asset edit that breaks a WordPress.org listing
+# rule from reaching main. Same check as the release workflow; no secrets.
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  release-check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - name: Release check (all stages, report every broken rule)
+        run: npm run release:check -- --keep-going

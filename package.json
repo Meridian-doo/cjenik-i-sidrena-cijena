@@ -1,0 +1,44 @@
+{
+  "name": "cjenik-i-sidrena-cijena",
+  "version": "1.0.0",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "env:start": "wp-env start",
+    "env:stop": "wp-env stop",
+    "env:seed": "wp-env run cli wp eval-file cjenik-dev/seed.php",
+    "env:reset": "wp-env reset && wp-env run cli wp eval-file cjenik-dev/seed.php",
+    "env:theme": "wp-env run cli wp eval-file cjenik-dev/botiga-store.php",
+    "env:theme-colors": "wp-env run cli wp eval-file cjenik-dev/botiga-colors.php",
+    "env:destroy": "wp-env destroy",
+    "wp": "wp-env run cli wp",
+    "test:php": "wp-env run cli --env-cwd=wp-content/plugins/cjenik-i-sidrena-cijena bash bin/test.sh",
+    "test:php:slow": "wp-env run cli --env-cwd=wp-content/plugins/cjenik-i-sidrena-cijena bash bin/test.sh --group slow",
+    "lint:php": "wp-env run cli --env-cwd=wp-content/plugins/cjenik-i-sidrena-cijena vendor/bin/phpcs",
+    "lint:php:fix": "wp-env run cli --env-cwd=wp-content/plugins/cjenik-i-sidrena-cijena vendor/bin/phpcbf",
+    "typecheck": "wp-env run cli --env-cwd=wp-content/plugins/cjenik-i-sidrena-cijena bash bin/typecheck.sh",
+    "composer": "wp-env run cli --env-cwd=wp-content/plugins/cjenik-i-sidrena-cijena composer",
+    "build": "node release/build.mjs",
+    "release:check": "node release/check.mjs",
+    "release:check:static": "node release/check.mjs --static",
+    "readme:po": "node release/readme-po.mjs",
+    "screenshots": "node release/screenshots.mjs",
+    "artwork": "node release/artwork/render.mjs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Meridian-doo/cjenik-i-sidrena-cijena.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Meridian-doo/cjenik-i-sidrena-cijena/issues"
+  },
+  "homepage": "https://github.com/Meridian-doo/cjenik-i-sidrena-cijena#readme",
+  "devDependencies": {
+    "@wordpress/env": "^11.16.0",
+    "@wp-playground/cli": "3.1.56",
+    "playwright": "1.63.0"
+  },
+  "license": "GPL-2.0-or-later",
+  "private": true
+}

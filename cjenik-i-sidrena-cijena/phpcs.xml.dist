@@ -1,0 +1,101 @@
+<?xml version="1.0"?>
+<ruleset name="Cjenik i sidrena cijena">
+	<description>WordPress Coding Standards for the Cjenik i sidrena cijena plugin.</description>
+
+	<file>.</file>
+	<exclude-pattern>/vendor/*</exclude-pattern>
+
+	<arg name="extensions" value="php"/>
+	<arg name="colors"/>
+	<arg name="parallel" value="8"/>
+	<arg value="ps"/>
+
+	<config name="minimum_wp_version" value="6.8"/>
+	<config name="testVersion" value="8.1-"/>
+
+	<rule ref="WordPress">
+		<!--
+		Every parameter and return value has a PHP type declaration, and PHPStan
+		(level 6) checks them and the generic types in docblocks. Docblocks are
+		written where they explain something, not to repeat the signature.
+		-->
+		<exclude name="Squiz.Commenting.FunctionComment.Missing"/>
+		<exclude name="Squiz.Commenting.FunctionComment.MissingParamTag"/>
+		<exclude name="Squiz.Commenting.FunctionComment.MissingParamComment"/>
+		<exclude name="Squiz.Commenting.FunctionComment.IncorrectTypeHint"/>
+		<exclude name="Squiz.Commenting.FunctionComment.ParamNameNoMatch"/>
+		<exclude name="Squiz.Commenting.FunctionCommentThrowTag.Missing"/>
+		<exclude name="Squiz.Commenting.VariableComment.Missing"/>
+		<exclude name="Squiz.Commenting.VariableComment.MissingVar"/>
+		<exclude name="Generic.Commenting.DocComment.MissingShort"/>
+
+		<!-- Trailing comments stay next to the code they explain; no "//end if" markers. -->
+		<exclude name="Squiz.Commenting.PostStatementComment"/>
+		<exclude name="Squiz.Commenting.LongConditionClosingComment"/>
+	</rule>
+	<rule ref="PHPCompatibilityWP"/>
+
+	<rule ref="WordPress.WP.I18n">
+		<properties>
+			<property name="text_domain" type="array">
+				<element value="cjenik-i-sidrena-cijena"/>
+			</property>
+		</properties>
+	</rule>
+
+	<rule ref="WordPress.NamingConventions.PrefixAllGlobals">
+		<properties>
+			<property name="prefixes" type="array">
+				<element value="cjenik"/>
+				<element value="Cjenik"/>
+			</property>
+		</properties>
+	</rule>
+
+	<!-- Classes live in PSR-4 folders under src/ and tests/, not class-*.php files. -->
+	<rule ref="WordPress.Files.FileName">
+		<exclude-pattern>/src/*</exclude-pattern>
+		<exclude-pattern>/tests/*</exclude-pattern>
+	</rule>
+
+	<!--
+	Price History and the Publication Log are the plugin's own tables, and the
+	catalogue is read in ID-ordered pages straight from the posts table so large
+	shops never load at once. None of these queries has anything to cache.
+	-->
+	<rule ref="WordPress.DB.DirectDatabaseQuery">
+		<exclude-pattern>/src/Catalogue\.php</exclude-pattern>
+		<exclude-pattern>/src/Import/CsvImporter\.php</exclude-pattern>
+		<exclude-pattern>/src/Install/Installer\.php</exclude-pattern>
+		<exclude-pattern>/src/Prices/PriceHistory\.php</exclude-pattern>
+		<exclude-pattern>/src/Publishing/PublicationLog\.php</exclude-pattern>
+		<exclude-pattern>/src/Publishing/Publisher\.php</exclude-pattern>
+		<exclude-pattern>/tests/*</exclude-pattern>
+	</rule>
+
+	<!-- Tests set up WordPress, write fixtures to disk and fire the plugin's hooks. -->
+	<rule ref="WordPress.NamingConventions.PrefixAllGlobals">
+		<exclude-pattern>/tests/*</exclude-pattern>
+	</rule>
+	<rule ref="WordPress.WP.GlobalVariablesOverride">
+		<exclude-pattern>/tests/*</exclude-pattern>
+	</rule>
+	<rule ref="WordPress.WP.AlternativeFunctions">
+		<exclude-pattern>/tests/*</exclude-pattern>
+	</rule>
+	<rule ref="WordPress.DB.PreparedSQL">
+		<exclude-pattern>/tests/LargeCatalogueTest\.php</exclude-pattern>
+	</rule>
+	<rule ref="WordPress.PHP.DiscouragedPHPFunctions">
+		<exclude-pattern>/tests/bootstrap\.php</exclude-pattern>
+	</rule>
+	<rule ref="WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase">
+		<exclude-pattern>/tests/*</exclude-pattern>
+	</rule>
+	<rule ref="Squiz.Commenting.ClassComment.Missing">
+		<exclude-pattern>/tests/*</exclude-pattern>
+	</rule>
+	<rule ref="Universal.Operators.DisallowShortTernary">
+		<exclude-pattern>/tests/*</exclude-pattern>
+	</rule>
+</ruleset>

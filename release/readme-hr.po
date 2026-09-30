@@ -1,0 +1,236 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: cjenik-i-sidrena-cijena readme\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/cjenik-i-sidrena-cijena\n"
+"Last-Translator: Meridian d.o.o.\n"
+"Language-Team: Croatian\n"
+"Language: hr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Readme-Source-Hash: 320ea3e7b87ab5d75a34e072a52fe4c897986792ea2d6ba13a4db74eecb6425b\n"
+
+#. Plugin name.
+msgid "Cjenik i sidrena cijena"
+msgstr "Cjenik i sidrena cijena"
+
+#. Short description.
+msgid "Helps Croatian WooCommerce shops publish the daily price list (cjenik) as CSV/XML and show the anchor price (sidrena cijena) and lowest 30-day price."
+msgstr "Pomaže hrvatskim WooCommerce trgovinama objaviti dnevni cjenik (CSV/XML) te prikazati sidrenu cijenu i najnižu cijenu u zadnjih 30 dana."
+
+#. Screenshot description.
+msgid "The setup asks for your outlet and where product data comes from, then publishes the first price list."
+msgstr "Postavljanje traži Vaše prodajno mjesto i izvor podataka o proizvodima, a zatim objavljuje prvi cjenik."
+
+#. Screenshot description.
+msgid "The status page shows today's file, the next run and the public URLs."
+msgstr "Stranica stanja prikazuje današnju datoteku, sljedeće pokretanje i javne adrese."
+
+#. Screenshot description.
+msgid "The publication log lists every file with its storage number, time, row count and checksum."
+msgstr "Dnevnik objava navodi svaku datoteku s brojem pohrane, vremenom, brojem redaka i kontrolnim zbrojem."
+
+#. Screenshot description.
+msgid "A product page shows the anchor price and, during a sale, the lowest price in the last 30 days."
+msgstr "Stranica proizvoda prikazuje sidrenu cijenu i, tijekom akcije, najnižu cijenu u zadnjih 30 dana."
+
+#. Screenshot description.
+msgid "Anchor prices lists items without a confirmed anchor price and imports them from CSV."
+msgstr "Sidrene cijene navode artikle bez potvrđene sidrene cijene i uvoze ih iz CSV-a."
+
+#. Screenshot description.
+msgid "The public archive lists every price list published in the retention period."
+msgstr "Javna arhiva navodi svaki cjenik objavljen u razdoblju čuvanja."
+
+#. Found in description header.
+msgid "Features"
+msgstr "Značajke"
+
+#. Found in description header.
+msgid "Why it's reliable"
+msgstr "Zašto je pouzdan"
+
+#. Found in description header.
+msgid "Important"
+msgstr "Važno"
+
+#. Found in description header.
+msgid "Privacy and external services"
+msgstr "Privatnost i vanjske usluge"
+
+#. Found in description header.
+msgid "Source code"
+msgstr "Izvorni kod"
+
+#. Found in description list item.
+msgid "Publishes the price list every day at a time you choose (default 05:00, Europe/Zagreb time), including weekends and holidays."
+msgstr "Objavljuje cjenik svaki dan u vrijeme koje odaberete (zadano 05:00, vrijeme Europe/Zagreb), uključujući vikende i blagdane."
+
+#. Found in description list item.
+msgid "Names each file with the outlet type, address, code, storage number, date and time."
+msgstr "Svakoj datoteci daje naziv s vrstom prodajnog mjesta, adresom, oznakom, brojem pohrane, datumom i vremenom."
+
+#. Found in description list item.
+msgid "Keeps a public archive page, a \"latest file\" URL that never changes, and every file for at least 31 days."
+msgstr "Održava javnu stranicu arhive i adresu „najnovije datoteke” koja se nikad ne mijenja te čuva svaku datoteku najmanje 31 dan."
+
+#. Found in description list item.
+msgid "Records a publication log with the time, row count and SHA-256 checksum of every file."
+msgstr "Vodi dnevnik objava s vremenom, brojem redaka i SHA-256 kontrolnim zbrojem svake datoteke."
+
+#. Found in description list item.
+msgid "Keeps a price history of every product and variation, from the day you activate the plugin."
+msgstr "Vodi povijest cijena svakog proizvoda i varijacije od dana kada aktivirate dodatak."
+
+#. Found in description list item.
+msgid "Takes anchor prices from that history, from the product screen, or from a CSV import (including the HOK template)."
+msgstr "Preuzima sidrene cijene iz te povijesti, sa zaslona proizvoda ili iz CSV uvoza (uključujući HOK predložak)."
+
+#. Found in description list item.
+msgid "Shows the anchor price and the lowest 30-day price on product pages, shop pages, product blocks and variation selection."
+msgstr "Prikazuje sidrenu cijenu i najnižu cijenu u zadnjih 30 dana na stranicama proizvoda, stranicama trgovine, blokovima proizvoda i pri odabiru varijacije."
+
+#. Found in description list item.
+msgid "Emails you and shows an admin notice when today's file is missing, and checks that visitors can download the files."
+msgstr "Šalje Vam e-poruku i prikazuje obavijest u administraciji kada nedostaje današnja datoteka te provjerava mogu li posjetitelji preuzeti datoteke."
+
+#. Found in description list item.
+msgid "Offers WP-CLI commands and instructions for a system cron job, so publishing doesn't depend on site traffic."
+msgstr "Nudi WP-CLI naredbe i upute za sistemski cron, tako da objava ne ovisi o posjećenosti stranice."
+
+#. Found in description list item.
+msgid "Works with WooCommerce order storage (HPOS) and the cart and checkout blocks."
+msgstr "Radi s WooCommerce pohranom narudžbi (HPOS) te blokovima košarice i blagajne."
+
+#. Found in description list item.
+msgid "Deadlines follow Europe/Zagreb time, including summer-time changes, whatever your site timezone."
+msgstr "Rokovi slijede vrijeme Europe/Zagreb, uključujući prelazak na ljetno vrijeme, bez obzira na vremensku zonu Vaše stranice."
+
+#. Found in description list item.
+msgid "Prices include VAT at the Croatian rate of each tax class, even when a scheduled task runs without a customer."
+msgstr "Cijene uključuju PDV po hrvatskoj stopi svakog poreznog razreda, čak i kada se zakazani zadatak izvršava bez kupca."
+
+#. Found in description list item.
+msgid "Prices come from the regular price, sale price and sale dates, so a late WooCommerce sale job can't publish a stale price."
+msgstr "Cijene se uzimaju iz redovne cijene, akcijske cijene i datuma akcije, pa zakašnjeli WooCommerce zadatak za akcije ne može objaviti zastarjelu cijenu."
+
+#. Found in description list item.
+msgid "A watchdog retries every 15 minutes until today's file exists, and a file is only visible once it is completely written."
+msgstr "Nadzornik ponavlja pokušaj svakih 15 minuta dok današnja datoteka ne postoji, a datoteka postaje vidljiva tek kada je u potpunosti zapisana."
+
+#. Found in description paragraph.
+msgid "From 1 October 2026, Croatian traders who sell online publish a machine-readable price list every day by 08:00 and keep each file online for 30 days (NN 101/2026). Next to the current price they show the anchor price (sidrena cijena, the \"dodatna cijena\" of the decision) and, during a sale (akcija, rasprodaja, popust), the lowest price in the last 30 days (najniža cijena)."
+msgstr "Od 1. listopada 2026. hrvatski trgovci koji prodaju putem interneta svaki dan do 08:00 objavljuju strojno čitljiv cjenik i drže svaku datoteku dostupnom 30 dana (NN 101/2026). Uz trenutačnu cijenu prikazuju sidrenu cijenu („dodatna cijena” iz odluke) i, tijekom akcije, rasprodaje ili popusta, najnižu cijenu u zadnjih 30 dana."
+
+#. Found in description paragraph.
+msgid "This plugin helps your WooCommerce shop publish that price list every morning as CSV or XML, and shows both prices on your product pages. It needs no account and no daily work."
+msgstr "Ovaj dodatak pomaže Vašoj WooCommerce trgovini da svako jutro objavi taj cjenik u CSV ili XML formatu te prikazuje obje cijene na stranicama proizvoda. Ne trebaju mu korisnički račun ni svakodnevni rad."
+
+#. Found in description paragraph.
+msgid "This plugin helps you publish your price list and show the anchor price and the lowest 30-day price. No plugin can guarantee legal compliance; you remain responsible for your data and for checking the current rules."
+msgstr "Ovaj dodatak pomaže Vam objaviti cjenik te prikazati sidrenu cijenu i najnižu cijenu u zadnjih 30 dana. Nijedan dodatak ne može jamčiti usklađenost s propisima; Vi ste odgovorni za svoje podatke i za provjeru važećih pravila."
+
+#. Found in description paragraph.
+msgid "The plugin sends no data to any external service and needs no account or licence. The only HTTP requests it makes go to your own site: the self-check downloads your price-list URLs without logging in, to confirm that visitors can reach them. Alert emails go through your site's own mailer."
+msgstr "Dodatak ne šalje podatke nijednoj vanjskoj usluzi i ne trebaju mu korisnički račun ni licenca. Jedini HTTP zahtjevi koje upućuje idu na Vašu vlastitu stranicu: samoprovjera bez prijave preuzima adrese Vaših cjenika kako bi potvrdila da ih posjetitelji mogu dohvatiti. E-poruke s upozorenjima šalju se putem sustava za e-poštu Vaše stranice."
+
+#. Found in description paragraph.
+msgid "The source code, tests and build scripts are public at <a href=\"https://github.com/Meridian-doo/cjenik-i-sidrena-cijena\">github.com/Meridian-doo/cjenik-i-sidrena-cijena</a>. The PHP isn't compiled or minified; <code>npm run build</code> in that repository produces this plugin's zip."
+msgstr "Izvorni kod, testovi i skripte za izradu javno su dostupni na <a href=\"https://github.com/Meridian-doo/cjenik-i-sidrena-cijena\">github.com/Meridian-doo/cjenik-i-sidrena-cijena</a>. PHP kod nije kompiliran ni minificiran; naredba <code>npm run build</code> u tom repozitoriju izrađuje zip ovog dodatka."
+
+#. Found in description paragraph.
+msgid "The admin screens use the Inter and IBM Plex Mono fonts, bundled in <code>assets/fonts</code> under the SIL Open Font License 1.1 and loaded from your own site."
+msgstr "Administracijski zasloni koriste fontove Inter i IBM Plex Mono, uključene u <code>assets/fonts</code> pod licencom SIL Open Font License 1.1 i učitane s Vaše stranice."
+
+#. Found in installation list item.
+msgid "Install and activate the plugin. WooCommerce must be active."
+msgstr "Instalirajte i aktivirajte dodatak. WooCommerce mora biti aktivan."
+
+#. Found in installation list item.
+msgid "The setup asks for your outlet (for a webshop: \"webshop\", your store address and a code such as \"P-01\") and where the brand, barcode and unit price come from. It then publishes the first price list."
+msgstr "Postavljanje traži Vaše prodajno mjesto (za web-trgovinu: „webshop”, adresu trgovine i oznaku poput „P-01”) te izvor marke, barkoda i jedinične cijene. Zatim objavljuje prvi cjenik."
+
+#. Found in installation list item.
+msgid "Link the archive page from your site footer."
+msgstr "Povežite stranicu arhive iz podnožja svoje stranice."
+
+#. Found in installation list item.
+msgid "Open WooCommerce → Price list (cjenik) → Anchor prices, and import anchor prices for products you sold before installing the plugin."
+msgstr "Otvorite WooCommerce → Cjenik → Sidrene cijene i uvezite sidrene cijene za proizvode koje ste prodavali prije instalacije dodatka."
+
+#. Found in installation list item.
+msgid "On a low-traffic site, ask your host for a system cron job: <code>0,15,30,45 * * * * cd /path/to/site &amp;&amp; wp cjenik watchdog --quiet</code>"
+msgstr "Na stranici s malo posjeta zatražite od svog pružatelja smještaja sistemski cron zadatak: <code>0,15,30,45 * * * * cd /path/to/site &amp;&amp; wp cjenik watchdog --quiet</code>"
+
+#. Found in faq header.
+msgid "How do I publish the price list before 08:00? (Kako objaviti cjenik prije 8:00?)"
+msgstr "Kako objaviti cjenik prije 8:00?"
+
+#. Found in faq header.
+msgid "What is the anchor price and which date is used? (Što je sidrena cijena i koji se datum koristi?)"
+msgstr "Što je sidrena cijena i koji se datum koristi?"
+
+#. Found in faq header.
+msgid "How is the lowest price in the last 30 days calculated? (Kako se računa najniža cijena u zadnjih 30 dana?)"
+msgstr "Kako se računa najniža cijena u zadnjih 30 dana?"
+
+#. Found in faq header.
+msgid "I installed the plugin after 10 September 2026. Where does the anchor price come from?"
+msgstr "Dodatak je instaliran nakon 10. rujna 2026. Odakle dolazi sidrena cijena?"
+
+#. Found in faq header.
+msgid "Where is the archive? (Gdje je arhiva?)"
+msgstr "Gdje je arhiva?"
+
+#. Found in faq header.
+msgid "Does it work for services? (Radi li za usluge?)"
+msgstr "Radi li za usluge?"
+
+#. Found in faq header.
+msgid "Which WP-CLI commands are there?"
+msgstr "Koje WP-CLI naredbe postoje?"
+
+#. Found in faq header.
+msgid "What happens to my data if I delete the plugin?"
+msgstr "Što se događa s podacima ako obrišete dodatak?"
+
+#. Found in faq paragraph.
+msgid "You don't have to do anything each day. The plugin publishes at 05:00 by default and retries every 15 minutes until the file exists. WordPress runs scheduled tasks only when someone visits the site, so on a quiet site add the system cron job from the installation steps. You can change the time under Settings."
+msgstr "Ne morate ništa raditi svaki dan. Dodatak zadano objavljuje u 05:00 i ponavlja pokušaj svakih 15 minuta dok datoteka ne postoji. WordPress izvršava zakazane zadatke samo kad netko posjeti stranicu, pa na stranici s malo posjeta dodajte sistemski cron zadatak iz koraka instalacije. Vrijeme možete promijeniti u Postavkama."
+
+#. Found in faq paragraph.
+msgid "It is the regular price (never a sale price) on 10 September 2026, or on 2 May 2025 for the food and household categories you choose. Products listed later use their first price. The plugin shows it as \"Cijena na 10.9.2026.: 12,00 €\", and you can change the wording."
+msgstr "To je redovna cijena (nikad akcijska) na dan 10. rujna 2026., odnosno 2. svibnja 2025. za kategorije hrane i proizvoda za kućanstvo koje odaberete. Proizvodi dodani kasnije koriste svoju prvu cijenu. Dodatak je prikazuje kao „Cijena na 10.9.2026.: 12,00 €”, a tekst možete promijeniti."
+
+#. Found in faq paragraph.
+msgid "During a sale, the plugin looks up the lowest price the item was offered at in the 30 days before the sale started, from its own price history. WooCommerce keeps no history, so the plugin knows prices from the day it was activated. You can import earlier prices from a CSV with <code>šifra</code> or <code>barkod</code>, <code>cijena</code> (with VAT), <code>od</code> and optionally <code>do</code>."
+msgstr "Tijekom akcije dodatak iz vlastite povijesti cijena traži najnižu cijenu po kojoj je artikl bio ponuđen u 30 dana prije početka akcije. WooCommerce ne vodi povijest cijena, pa dodatak poznaje cijene od dana aktivacije. Ranije cijene možete uvesti iz CSV-a sa stupcima <code>šifra</code> ili <code>barkod</code>, <code>cijena</code> (s PDV-om), <code>od</code> i po želji <code>do</code>."
+
+#. Found in faq paragraph.
+msgid "Until you enter or import the correct anchor price, the plugin uses the earliest price it knows with that date, and lists the item under Anchor prices. Import a CSV with <code>šifra</code> or <code>barkod</code>, <code>sidrena cijena</code> and <code>sidreni datum</code>, or a HOK template with a \"Cijena 10.9.2026.\" column."
+msgstr "Dok ne unesete ili uvezete ispravnu sidrenu cijenu, dodatak koristi najraniju poznatu cijenu s tim datumom i navodi artikl pod Sidrenim cijenama. Uvezite CSV sa stupcima <code>šifra</code> ili <code>barkod</code>, <code>sidrena cijena</code> i <code>sidreni datum</code> ili HOK predložak sa stupcem „Cijena 10.9.2026.”."
+
+#. Found in faq paragraph.
+msgid "The plugin creates a public page listing every published file, and you can add the list to any page with the <code>[cjenik_arhiva]</code> shortcode. The newest file is always at <code>/cjenik/webshop.csv</code> on your site."
+msgstr "Dodatak izrađuje javnu stranicu s popisom svih objavljenih datoteka, a popis možete dodati na bilo koju stranicu kratkim kodom <code>[cjenik_arhiva]</code>. Najnovija datoteka uvijek je na adresi <code>/cjenik/webshop.csv</code> Vaše stranice."
+
+#. Found in faq paragraph.
+msgid "No. The plugin lists your WooCommerce products and variations. It doesn't cover services or a price list for several shops (outlets); the free plugin sets up one outlet, your webshop. Developers can add rows and outlets with the <code>cjenik_row_sources</code> and <code>cjenik_outlets</code> filters."
+msgstr "Ne. Dodatak navodi Vaše WooCommerce proizvode i varijacije. Ne pokriva usluge ni cjenik za više trgovina (prodajnih mjesta); besplatni dodatak postavlja jedno prodajno mjesto, Vašu web-trgovinu. Programeri mogu dodati retke i prodajna mjesta filtrima <code>cjenik_row_sources</code> i <code>cjenik_outlets</code>."
+
+#. Found in faq paragraph.
+msgid "The commands are <code>wp cjenik publish</code>, <code>watchdog</code>, <code>status</code>, <code>log</code>, <code>snapshot</code>, <code>import-anchors &lt;file&gt;</code>, <code>import-history &lt;file&gt;</code> and <code>self-check</code>."
+msgstr "Naredbe su <code>wp cjenik publish</code>, <code>watchdog</code>, <code>status</code>, <code>log</code>, <code>snapshot</code>, <code>import-anchors &lt;file&gt;</code>, <code>import-history &lt;file&gt;</code> i <code>self-check</code>."
+
+#. Found in faq paragraph.
+msgid "By default the price history, anchor prices, publication log and files are kept as evidence. You can choose to delete them in the settings."
+msgstr "Povijest cijena, sidrene cijene, dnevnik objava i datoteke zadano se čuvaju kao dokaz. U postavkama možete odabrati da se obrišu."
+
+#. Found in changelog list item.
+msgid "First public release."
+msgstr "Prvo javno izdanje."
+
+#. Found in changelog paragraph.
+msgid "The full history is in changelog.txt."
+msgstr "Cijela povijest nalazi se u datoteci changelog.txt."

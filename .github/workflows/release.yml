@@ -1,0 +1,72 @@
+name: Release to WordPress.org
+
+# Push a version tag (0.2.0 or v0.2.0) to publish that version: build, release
+# check, then trunk/, tags/<version>/ and assets/ in SVN. Run it by hand for a
+# dry run, or in "listing" mode to update only readme.txt and assets/.
+on:
+  push:
+    tags: ['[0-9]+.[0-9]+.[0-9]+', 'v[0-9]+.[0-9]+.[0-9]+']
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: 'release = new version; listing = readme.txt and assets only'
+        type: choice
+        options: [release, listing]
+        default: release
+      dry_run:
+        description: 'Only show what would be committed'
+        type: boolean
+        default: true
+
+permissions:
+  contents: read
+
+concurrency:
+  group: wordpress-org-svn
+  cancel-in-progress: false
+
+jobs:
+  release:
+    # Releases run from the maintainers' private repository, which holds the
+    # SVN secrets; never from the public copy or a fork.
+    if: github.repository_owner == 'Meridian-doo' && github.repository != 'Meridian-doo/cjenik-i-sidrena-cijena'
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    environment: wordpress-org
+    env:
+      MODE: ${{ inputs.mode || 'release' }}
+      DRY_RUN: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run }}
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Check the tag matches the plugin version
+        id: version
+        run: |
+          version=$(sed -nE 's/^[[:space:]*]*Version:[[:space:]]*([0-9.]+).*/\1/p' cjenik-i-sidrena-cijena/cjenik-i-sidrena-cijena.php | head -1)
+          if [[ $GITHUB_REF_TYPE == tag && ${GITHUB_REF_NAME#v} != "$version" ]]; then
+            echo "::error::Tag $GITHUB_REF_NAME doesn't match the plugin version $version."
+            exit 1
+          fi
+          if [[ $MODE == release && $DRY_RUN != true && $GITHUB_REF_TYPE != tag ]]; then
+            echo "::error::A real release must run from a version tag. Push the tag, or run a dry run."
+            exit 1
+          fi
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+
+      - run: npm ci
+      - run: npm run build
+      - name: Release check
+        run: npm run release:check
+
+      - name: Install Subversion
+        run: sudo apt-get update -q && sudo apt-get install -yq subversion
+
+      - name: Publish to WordPress.org SVN
+        env:
+          SVN_USERNAME: ${{ secrets.SVN_USERNAME }}
+          SVN_PASSWORD: ${{ secrets.SVN_PASSWORD }}
+        run: release/deploy.sh "$MODE" "${{ steps.version.outputs.version }}" ${{ env.DRY_RUN == 'true' && '--dry-run' || '' }}

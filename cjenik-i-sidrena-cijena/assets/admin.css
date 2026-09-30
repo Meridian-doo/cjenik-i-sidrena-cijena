@@ -1,0 +1,1193 @@
+/*
+ * The plugin's admin screens, from the "Cjenik – Design System" Figma file
+ * (06 · Sučelje proizvoda). Loaded on WooCommerce → Price list only. The
+ * WordPress chrome, the heading and the tabs keep the admin's own look; the
+ * components below bring their own type and colours. Selectors carry the
+ * .cjenik-admin scope so they win over wp-admin's forms.css and common.css
+ * without `!important`.
+ */
+@font-face {
+	font-family: "Cjenik Inter";
+	font-style: normal;
+	font-weight: 100 900;
+	font-display: swap;
+	src: url(fonts/inter-latin-ext-wght-normal.woff2) format("woff2");
+	unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+@font-face {
+	font-family: "Cjenik Inter";
+	font-style: normal;
+	font-weight: 100 900;
+	font-display: swap;
+	src: url(fonts/inter-latin-wght-normal.woff2) format("woff2");
+	unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+	font-family: "Cjenik Plex Mono";
+	font-style: normal;
+	font-weight: 500;
+	font-display: swap;
+	src: url(fonts/ibm-plex-mono-latin-ext-500-normal.woff2) format("woff2");
+	unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+@font-face {
+	font-family: "Cjenik Plex Mono";
+	font-style: normal;
+	font-weight: 500;
+	font-display: swap;
+	src: url(fonts/ibm-plex-mono-latin-500-normal.woff2) format("woff2");
+	unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+.cjenik-admin {
+	--cjenik-bg: #fff;
+	--cjenik-surface: #f5f5f3;
+	--cjenik-surface-strong: #ecece8;
+	--cjenik-border: #e6e6e2;
+	--cjenik-border-strong: #d2d2cc;
+	--cjenik-ink: #111;
+	--cjenik-ink-hover: #2b2b29;
+	--cjenik-on-ink: #fff;
+	--cjenik-on-ink-muted: #a8a8a2;
+	--cjenik-bg-translucent: rgba(255, 255, 255, 0.94);
+	--cjenik-shadow-bar: 0 12px 32px rgba(17, 17, 17, 0.08);
+	--cjenik-shadow-toast: 0 12px 32px rgba(17, 17, 17, 0.16);
+	--cjenik-muted: #5f5f5a;
+	--cjenik-accent-text: #c2400c;
+	--cjenik-success: #1e7f4f;
+	--cjenik-success-tint: #e4f3ea;
+	--cjenik-warning: #8f5e14;
+	--cjenik-warning-tint: #fbf1dc;
+	--cjenik-danger: #c0272d;
+	--cjenik-danger-tint: #fbe6e6;
+	--cjenik-sans: "Cjenik Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+	--cjenik-mono: "Cjenik Plex Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+	--cjenik-radius-card: 16px;
+	--cjenik-radius-control: 6px;
+	--cjenik-gutter: 24px;
+}
+
+.cjenik-admin .cjenik-card,
+.cjenik-admin .cjenik-empty {
+	box-sizing: border-box;
+	max-width: 1200px;
+	margin: 16px 0 24px;
+	color: var(--cjenik-ink);
+	font-family: var(--cjenik-sans);
+	font-size: 14px;
+	line-height: 20px;
+	-webkit-font-smoothing: antialiased;
+}
+
+.cjenik-admin .cjenik-muted {
+	color: var(--cjenik-muted);
+}
+
+.cjenik-admin .cjenik-card :focus-visible,
+.cjenik-admin .cjenik-empty :focus-visible,
+.cjenik-admin .cjenik-actions :focus-visible,
+.cjenik-admin .cjenik-toast :focus-visible {
+	outline: 2px solid var(--cjenik-ink);
+	outline-offset: 2px;
+	box-shadow: none;
+}
+
+/* Card ---------------------------------------------------------------- */
+
+.cjenik-admin .cjenik-card {
+	overflow: hidden;
+	background: var(--cjenik-bg);
+	border: 1px solid var(--cjenik-border);
+	border-radius: var(--cjenik-radius-card);
+}
+
+.cjenik-admin .cjenik-card__header {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 12px 24px;
+	align-items: center;
+	justify-content: space-between;
+	padding: 16px var(--cjenik-gutter);
+	border-bottom: 1px solid var(--cjenik-border);
+}
+
+.cjenik-admin .cjenik-card__title {
+	margin: 0;
+	padding: 0;
+	color: var(--cjenik-ink);
+	font-family: var(--cjenik-sans);
+	font-size: 16px;
+	font-weight: 600;
+	line-height: 24px;
+}
+
+.cjenik-admin .cjenik-card__message {
+	margin: 0;
+	padding: 32px var(--cjenik-gutter);
+	color: var(--cjenik-muted);
+	font-size: 14px;
+	line-height: 20px;
+}
+
+.cjenik-admin .cjenik-card__message a {
+	color: var(--cjenik-ink);
+	font-weight: 500;
+	text-underline-offset: 3px;
+}
+
+.cjenik-admin .cjenik-card__footer {
+	display: flex;
+	gap: 16px;
+	align-items: center;
+	justify-content: space-between;
+	padding: 12px var(--cjenik-gutter);
+}
+
+.cjenik-admin .cjenik-card__footer p {
+	margin: 0;
+	font-size: 14px;
+	line-height: 20px;
+}
+
+/* Filters ------------------------------------------------------------- */
+
+.cjenik-admin .cjenik-filters {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 12px;
+	align-items: center;
+	margin: 0;
+}
+
+.cjenik-admin .cjenik-search {
+	display: inline-flex;
+	gap: 8px;
+	align-items: center;
+	padding: 0 12px;
+	background: var(--cjenik-bg);
+	border: 1px solid var(--cjenik-border-strong);
+	border-radius: var(--cjenik-radius-control);
+	cursor: text;
+}
+
+.cjenik-admin .cjenik-search:focus-within {
+	border-color: var(--cjenik-ink);
+}
+
+.cjenik-admin .cjenik-search img {
+	flex: none;
+}
+
+.cjenik-admin .cjenik-search input[type="search"] {
+	width: 160px;
+	min-height: 0;
+	margin: 0;
+	padding: 8px 0;
+	background: transparent;
+	border: 0;
+	border-radius: 0;
+	box-shadow: none;
+	color: var(--cjenik-ink);
+	font-family: var(--cjenik-sans);
+	font-size: 14px;
+	line-height: 20px;
+}
+
+.cjenik-admin .cjenik-search input[type="search"]::placeholder {
+	color: var(--cjenik-muted);
+	opacity: 1;
+}
+
+.cjenik-admin .cjenik-search input[type="search"]:focus {
+	outline: 0;
+	box-shadow: none;
+}
+
+/* A select dressed as the design's chip, with a chevron so it reads as a menu. */
+.cjenik-admin .cjenik-chip select {
+	min-height: 0;
+	margin: 0;
+	padding: 8px 34px 8px 14px;
+	background: var(--cjenik-surface) url(icons/chevron-down.svg) no-repeat right 12px center;
+	border: 1px solid var(--cjenik-border);
+	border-radius: 999px;
+	color: var(--cjenik-ink);
+	font-family: var(--cjenik-sans);
+	font-size: 14px;
+	font-weight: 500;
+	line-height: 20px;
+	cursor: pointer;
+	appearance: none;
+}
+
+.cjenik-admin .cjenik-chip select:hover {
+	border-color: var(--cjenik-border-strong);
+	color: var(--cjenik-ink);
+}
+
+.cjenik-admin .cjenik-chip select:focus {
+	border-color: var(--cjenik-ink);
+	box-shadow: none;
+	color: var(--cjenik-ink);
+}
+
+/* Table: header 40, row 48, figures and codes in mono, figures right. -- */
+
+/* Positioned, so wp-admin's absolutely placed .screen-reader-text labels in
+   the table are clipped with it instead of widening the page. */
+.cjenik-admin .cjenik-table-scroll {
+	position: relative;
+	overflow-x: auto;
+}
+
+.cjenik-admin .cjenik-table {
+	width: 100%;
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+.cjenik-admin .cjenik-table th,
+.cjenik-admin .cjenik-table td {
+	padding: 0 12px;
+	text-align: left;
+	vertical-align: middle;
+	white-space: nowrap;
+}
+
+.cjenik-admin .cjenik-table th:first-child,
+.cjenik-admin .cjenik-table td:first-child {
+	padding-left: var(--cjenik-gutter);
+}
+
+.cjenik-admin .cjenik-table th:last-child,
+.cjenik-admin .cjenik-table td:last-child {
+	padding-right: var(--cjenik-gutter);
+}
+
+.cjenik-admin .cjenik-table thead th {
+	height: 40px;
+	background: var(--cjenik-surface-strong);
+	color: var(--cjenik-muted);
+	font-family: var(--cjenik-mono);
+	font-size: 12px;
+	font-weight: 500;
+	line-height: 16px;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+}
+
+.cjenik-admin .cjenik-table tbody td {
+	height: 48px;
+	padding-top: 14px;
+	padding-bottom: 14px;
+	box-sizing: border-box;
+	border-bottom: 1px solid var(--cjenik-border);
+	color: var(--cjenik-ink);
+	font-family: var(--cjenik-mono);
+	font-size: 14px;
+	font-weight: 500;
+	line-height: 20px;
+	font-variant-numeric: tabular-nums;
+}
+
+.cjenik-admin .cjenik-table tbody tr.is-warning td {
+	background: var(--cjenik-warning-tint);
+}
+
+.cjenik-admin .cjenik-table .is-number {
+	text-align: right;
+}
+
+.cjenik-admin .cjenik-table .is-file {
+	width: 100%;
+	white-space: normal;
+}
+
+.cjenik-admin .cjenik-table .is-status {
+	padding-left: var(--cjenik-gutter);
+}
+
+.cjenik-admin .cjenik-table .is-action {
+	min-width: 96px;
+	text-align: right;
+}
+
+.cjenik-admin .cjenik-table .cjenik-muted {
+	color: var(--cjenik-muted);
+}
+
+.cjenik-admin .cjenik-table abbr[title] {
+	border: 0;
+	text-decoration: none;
+	cursor: help;
+}
+
+/* What went wrong, under the file name: one line, whole in the title. The
+   zero width keeps it from widening the column; the file name sets that. */
+.cjenik-admin .cjenik-note {
+	display: block;
+	width: 0;
+	min-width: 100%;
+	overflow: hidden;
+	margin-top: 2px;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	color: var(--cjenik-muted);
+	font-family: var(--cjenik-sans);
+	font-size: 13px;
+	font-weight: 400;
+	line-height: 18px;
+}
+
+.cjenik-admin .cjenik-note.is-danger {
+	color: var(--cjenik-danger);
+}
+
+.cjenik-admin .cjenik-note a {
+	color: inherit;
+	font-weight: 500;
+	text-decoration: underline;
+}
+
+/* Status pill: always a dot with the colour, never colour alone. ----- */
+
+.cjenik-admin .cjenik-pill {
+	display: inline-flex;
+	gap: 6px;
+	align-items: center;
+	padding: 4px 10px;
+	border-radius: 999px;
+	font-family: var(--cjenik-sans);
+	font-size: 14px;
+	font-weight: 500;
+	line-height: 20px;
+	white-space: nowrap;
+}
+
+.cjenik-admin .cjenik-pill::before {
+	content: "";
+	flex: none;
+	width: 6px;
+	height: 6px;
+	border-radius: 3px;
+	background: currentColor;
+}
+
+.cjenik-admin .cjenik-pill.is-success {
+	background: var(--cjenik-success-tint);
+	color: var(--cjenik-success);
+}
+
+.cjenik-admin .cjenik-pill.is-warning {
+	background: var(--cjenik-bg);
+	box-shadow: inset 0 0 0 1px var(--cjenik-border);
+	color: var(--cjenik-warning);
+}
+
+.cjenik-admin .cjenik-pill.is-danger {
+	background: var(--cjenik-danger-tint);
+	color: var(--cjenik-danger);
+}
+
+.cjenik-admin .cjenik-pill.is-neutral {
+	background: var(--cjenik-surface);
+	color: var(--cjenik-muted);
+}
+
+/* The one action at the end of a row. -------------------------------- */
+
+.cjenik-admin .cjenik-link {
+	display: inline;
+	margin: 0;
+	padding: 0;
+	background: none;
+	border: 0;
+	border-radius: 2px;
+	color: var(--cjenik-ink);
+	font-family: var(--cjenik-sans);
+	font-size: 14px;
+	font-weight: 500;
+	line-height: 20px;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+.cjenik-admin .cjenik-link:hover {
+	color: var(--cjenik-ink);
+	text-decoration: underline;
+	text-underline-offset: 3px;
+}
+
+.cjenik-admin .cjenik-link.is-accent,
+.cjenik-admin .cjenik-link.is-accent:hover {
+	color: var(--cjenik-accent-text);
+}
+
+/* Pagination --------------------------------------------------------- */
+
+.cjenik-admin .cjenik-pager {
+	display: flex;
+	gap: 8px;
+}
+
+.cjenik-admin .cjenik-icon-button {
+	display: inline-flex;
+	box-sizing: border-box;
+	width: 32px;
+	height: 32px;
+	align-items: center;
+	justify-content: center;
+	border: 1px solid var(--cjenik-border);
+	border-radius: var(--cjenik-radius-control);
+	transition: border-color 120ms cubic-bezier(0.2, 0, 0, 1), background-color 120ms cubic-bezier(0.2, 0, 0, 1);
+}
+
+.cjenik-admin a.cjenik-icon-button:hover {
+	background: var(--cjenik-surface);
+	border-color: var(--cjenik-border-strong);
+}
+
+.cjenik-admin .cjenik-icon-button.is-disabled {
+	opacity: 0.4;
+}
+
+/* Empty state -------------------------------------------------------- */
+
+.cjenik-admin .cjenik-empty {
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+	align-items: center;
+	padding: 48px 32px;
+	border: 1px dashed var(--cjenik-border-strong);
+	border-radius: var(--cjenik-radius-card);
+	text-align: center;
+}
+
+.cjenik-admin .cjenik-empty__icon {
+	display: flex;
+	width: 48px;
+	height: 48px;
+	box-sizing: border-box;
+	align-items: center;
+	justify-content: center;
+	background: var(--cjenik-surface);
+	border: 1px solid var(--cjenik-border);
+	border-radius: 10px;
+}
+
+.cjenik-admin .cjenik-empty__title {
+	margin: 0 0 -12px;
+	padding: 0;
+	color: var(--cjenik-ink);
+	font-family: var(--cjenik-sans);
+	font-size: 16px;
+	font-weight: 600;
+	line-height: 24px;
+}
+
+.cjenik-admin .cjenik-empty__text {
+	max-width: 320px;
+	margin: 0;
+	color: var(--cjenik-muted);
+	font-size: 14px;
+	line-height: 20px;
+}
+
+.cjenik-admin .cjenik-button {
+	margin: 0;
+	padding: 12px 20px;
+	background: var(--cjenik-ink);
+	border: 0;
+	border-radius: 999px;
+	color: var(--cjenik-on-ink);
+	font-family: var(--cjenik-sans);
+	font-size: 14px;
+	font-weight: 500;
+	line-height: 20px;
+	cursor: pointer;
+	transition: background-color 120ms cubic-bezier(0.2, 0, 0, 1);
+}
+
+.cjenik-admin .cjenik-button:hover {
+	background: var(--cjenik-ink-hover);
+}
+
+/* Forms: label above, 8px, field, 8px, help below; 24px between fields,
+   two columns when fields come in pairs; the form's buttons on the left,
+   primary first. ------------------------------------------------------- */
+
+.cjenik-admin .cjenik-form,
+.cjenik-admin .cjenik-imports,
+.cjenik-admin .cjenik-pro {
+	max-width: 1200px;
+}
+
+.cjenik-admin .cjenik-card__lede + .cjenik-card__message {
+	padding-top: 0;
+}
+
+.cjenik-admin .cjenik-card__lede {
+	max-width: 760px;
+	margin: 0;
+	padding: 16px var(--cjenik-gutter);
+	color: var(--cjenik-muted);
+	font-size: 14px;
+	line-height: 20px;
+}
+
+.cjenik-admin .cjenik-fields {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: 24px;
+	padding: var(--cjenik-gutter);
+}
+
+.cjenik-admin .cjenik-fields > .is-wide,
+.cjenik-admin .cjenik-fields > .cjenik-switch-row,
+.cjenik-admin .cjenik-fields > .notice {
+	grid-column: 1 / -1;
+}
+
+.cjenik-admin .cjenik-fields > .notice {
+	margin: 0;
+}
+
+.cjenik-admin .cjenik-field {
+	display: flex;
+	min-width: 0;
+	flex-direction: column;
+	gap: 8px;
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
+
+/* A legend can't be a flex item; the fieldset spaces its parts itself. */
+.cjenik-admin fieldset.cjenik-field {
+	display: block;
+}
+
+.cjenik-admin fieldset.cjenik-field > .cjenik-field__label {
+	margin-bottom: 8px;
+}
+
+.cjenik-admin fieldset.cjenik-field > .cjenik-field__help {
+	margin-top: 8px;
+}
+
+.cjenik-admin .cjenik-field__label {
+	padding: 0;
+	color: var(--cjenik-ink);
+	font-size: 14px;
+	font-weight: 500;
+	line-height: 20px;
+}
+
+.cjenik-admin .cjenik-field__help {
+	margin: 0;
+	color: var(--cjenik-muted);
+	font-size: 14px;
+	line-height: 20px;
+}
+
+.cjenik-admin .cjenik-input-wrap {
+	position: relative;
+}
+
+.cjenik-admin .cjenik-input {
+	box-sizing: border-box;
+	width: 100%;
+	max-width: none;
+	height: 50px;
+	min-height: 0;
+	margin: 0;
+	padding: 12px 16px;
+	background: var(--cjenik-bg);
+	border: 1px solid var(--cjenik-border-strong);
+	border-radius: var(--cjenik-radius-control);
+	box-shadow: none;
+	color: var(--cjenik-ink);
+	font-family: var(--cjenik-sans);
+	font-size: 16px;
+	font-weight: 400;
+	line-height: 24px;
+}
+
+.cjenik-admin .cjenik-input.is-mono {
+	font-family: var(--cjenik-mono);
+	font-weight: 500;
+}
+
+.cjenik-admin .cjenik-input:hover {
+	border-color: var(--cjenik-muted);
+	color: var(--cjenik-ink);
+}
+
+.cjenik-admin .cjenik-input:focus {
+	border-color: var(--cjenik-ink);
+	outline: 2px solid transparent;
+	box-shadow: 0 0 0 1px var(--cjenik-ink);
+	color: var(--cjenik-ink);
+}
+
+.cjenik-admin .cjenik-input__icon {
+	display: flex;
+	position: absolute;
+	top: 50%;
+	left: 16px;
+	transform: translateY(-50%);
+	pointer-events: none;
+}
+
+.cjenik-admin .cjenik-input__icon + .cjenik-input {
+	padding-left: 42px;
+}
+
+/* The clock on the left stands in for the browser's own picker icon. */
+.cjenik-admin .cjenik-input[type="time"]::-webkit-calendar-picker-indicator {
+	display: none;
+}
+
+.cjenik-admin .cjenik-input[type="time"]::-webkit-datetime-edit-fields-wrapper {
+	padding: 0;
+}
+
+.cjenik-admin .cjenik-select {
+	padding-right: 44px;
+	background: var(--cjenik-bg) url(icons/chevron-down.svg) no-repeat right 16px center;
+	cursor: pointer;
+	appearance: none;
+}
+
+.cjenik-admin .cjenik-input.is-small {
+	height: 36px;
+	padding: 7px 10px;
+	font-size: 14px;
+	line-height: 20px;
+}
+
+/* Checkboxes, radios and switches: 18px, ink when on. */
+.cjenik-admin .cjenik-choices {
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+	padding-top: 4px;
+}
+
+.cjenik-admin .cjenik-choices.is-columns {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+	max-height: 240px;
+	overflow: auto;
+	gap: 12px 24px;
+	padding: 4px 2px;
+}
+
+.cjenik-admin .cjenik-choice {
+	display: flex;
+	gap: 10px;
+	align-items: center;
+	margin: 0;
+	color: var(--cjenik-ink);
+	font-size: 16px;
+	line-height: 24px;
+	cursor: pointer;
+}
+
+.cjenik-admin input.cjenik-checkbox,
+.cjenik-admin input.cjenik-radio {
+	display: inline-grid;
+	flex: none;
+	box-sizing: border-box;
+	width: 18px;
+	min-width: 18px;
+	height: 18px;
+	margin: 0;
+	place-content: center;
+	background: var(--cjenik-bg);
+	border: 1px solid var(--cjenik-border-strong);
+	border-radius: 4px;
+	box-shadow: none;
+	cursor: pointer;
+	vertical-align: middle;
+	appearance: none;
+}
+
+.cjenik-admin input.cjenik-radio {
+	border-radius: 9px;
+}
+
+.cjenik-admin input.cjenik-checkbox:checked {
+	background: var(--cjenik-ink);
+	border-color: var(--cjenik-ink);
+}
+
+.cjenik-admin input.cjenik-checkbox:checked::before {
+	content: "";
+	width: 12px;
+	height: 12px;
+	margin: 0;
+	background: url(icons/check.svg) center / 12px no-repeat;
+}
+
+.cjenik-admin input.cjenik-radio:checked {
+	border-color: var(--cjenik-ink);
+}
+
+.cjenik-admin input.cjenik-radio:checked::before {
+	content: "";
+	width: 8px;
+	height: 8px;
+	margin: 0;
+	background: var(--cjenik-ink);
+	border-radius: 4px;
+}
+
+.cjenik-admin input.cjenik-checkbox:disabled,
+.cjenik-admin input.cjenik-radio:disabled {
+	opacity: 0.4;
+	cursor: default;
+}
+
+.cjenik-admin input.cjenik-checkbox:focus,
+.cjenik-admin input.cjenik-radio:focus,
+.cjenik-admin input.cjenik-switch:focus {
+	border-color: var(--cjenik-ink);
+	box-shadow: none;
+}
+
+.cjenik-admin input.cjenik-checkbox:focus-visible,
+.cjenik-admin input.cjenik-radio:focus-visible,
+.cjenik-admin input.cjenik-switch:focus-visible {
+	outline: 2px solid var(--cjenik-ink);
+	outline-offset: 2px;
+}
+
+.cjenik-admin .cjenik-switch-row {
+	display: flex;
+	gap: 24px;
+	align-items: flex-start;
+	justify-content: space-between;
+}
+
+.cjenik-admin .cjenik-fields > .cjenik-switch-row:not(:first-child) {
+	padding-top: 16px;
+	border-top: 1px solid var(--cjenik-border);
+}
+
+.cjenik-admin .cjenik-switch-row__label {
+	display: block;
+	margin-bottom: 2px;
+	color: var(--cjenik-ink);
+	font-size: 16px;
+	line-height: 24px;
+}
+
+.cjenik-admin input.cjenik-switch {
+	position: relative;
+	flex: none;
+	width: 36px;
+	min-width: 36px;
+	height: 20px;
+	margin: 2px 0 0;
+	padding: 0;
+	background: var(--cjenik-border-strong);
+	border: 0;
+	border-radius: 10px;
+	box-shadow: none;
+	cursor: pointer;
+	appearance: none;
+	transition: background-color 120ms cubic-bezier(0.2, 0, 0, 1);
+}
+
+.cjenik-admin input.cjenik-switch::before,
+.cjenik-admin input.cjenik-switch:checked::before {
+	content: "";
+	position: absolute;
+	top: 2px;
+	left: 2px;
+	width: 16px;
+	height: 16px;
+	margin: 0;
+	background: var(--cjenik-on-ink);
+	border-radius: 8px;
+	transition: transform 120ms cubic-bezier(0.2, 0, 0, 1);
+}
+
+.cjenik-admin input.cjenik-switch:checked {
+	background: var(--cjenik-ink);
+}
+
+.cjenik-admin input.cjenik-switch:checked::before {
+	transform: translateX(16px);
+}
+
+/* The columns table holds inputs, so its rows follow them. */
+.cjenik-admin .cjenik-table.is-form tbody td {
+	height: auto;
+	padding-top: 8px;
+	padding-bottom: 8px;
+}
+
+.cjenik-admin .cjenik-table.is-form input[type="number"] {
+	width: 72px;
+}
+
+.cjenik-admin .cjenik-table .is-wide {
+	width: 100%;
+}
+
+.cjenik-admin .cjenik-table td.is-text {
+	font-family: var(--cjenik-sans);
+	font-weight: 400;
+	white-space: normal;
+}
+
+/* Buttons. The save bar stays in view at the bottom of a long form. */
+.cjenik-admin .cjenik-button {
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
+	text-decoration: none;
+}
+
+.cjenik-admin .cjenik-button:focus {
+	color: var(--cjenik-on-ink);
+	box-shadow: none;
+}
+
+.cjenik-admin .cjenik-button.is-secondary,
+.cjenik-admin .cjenik-button.is-secondary:focus {
+	padding: 11px 19px;
+	background: var(--cjenik-surface);
+	border: 1px solid var(--cjenik-border);
+	color: var(--cjenik-ink);
+}
+
+.cjenik-admin .cjenik-button.is-secondary:hover {
+	background: var(--cjenik-surface-strong);
+	color: var(--cjenik-ink);
+}
+
+.cjenik-admin .cjenik-button.is-busy {
+	pointer-events: none;
+}
+
+.cjenik-admin .cjenik-button.is-busy::before {
+	content: "";
+	width: 14px;
+	height: 14px;
+	box-sizing: border-box;
+	border: 2px solid currentColor;
+	border-right-color: transparent;
+	border-radius: 50%;
+	animation: cjenik-spin 700ms linear infinite;
+}
+
+@keyframes cjenik-spin {
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+.cjenik-admin .cjenik-actions {
+	position: sticky;
+	bottom: 16px;
+	z-index: 2;
+	display: flex;
+	gap: 12px;
+	align-items: center;
+	box-sizing: border-box;
+	margin: 24px 0 0;
+	padding: 16px var(--cjenik-gutter);
+	background: var(--cjenik-bg-translucent);
+	border: 1px solid var(--cjenik-border);
+	border-radius: var(--cjenik-radius-card);
+	box-shadow: var(--cjenik-shadow-bar);
+	backdrop-filter: blur(8px);
+}
+
+.cjenik-admin .cjenik-pro {
+	margin: 24px 0;
+	color: var(--cjenik-muted);
+	font-family: var(--cjenik-sans);
+	font-size: 14px;
+	line-height: 20px;
+}
+
+.cjenik-admin .cjenik-pro a {
+	color: var(--cjenik-ink);
+	font-weight: 500;
+	text-underline-offset: 3px;
+}
+
+/* Imports: a drop zone the file input covers, so a click or a dropped file
+   both reach it without JavaScript. */
+.cjenik-admin .cjenik-imports {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: 24px;
+	margin: 16px 0 24px;
+}
+
+.cjenik-admin .cjenik-imports > .cjenik-card {
+	display: flex;
+	flex-direction: column;
+	margin: 0;
+}
+
+.cjenik-admin .cjenik-upload {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+	margin: auto 0 0;
+	padding: 0 var(--cjenik-gutter) var(--cjenik-gutter);
+}
+
+.cjenik-admin .cjenik-dropzone {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	gap: 2px;
+	align-items: center;
+	padding: 32px;
+	background: var(--cjenik-surface);
+	border: 1px dashed var(--cjenik-border-strong);
+	border-radius: 10px;
+	text-align: center;
+	cursor: pointer;
+	transition: border-color 120ms cubic-bezier(0.2, 0, 0, 1), background-color 120ms cubic-bezier(0.2, 0, 0, 1);
+}
+
+.cjenik-admin .cjenik-dropzone img {
+	margin-bottom: 10px;
+}
+
+.cjenik-admin .cjenik-dropzone:hover,
+.cjenik-admin .cjenik-dropzone.is-dragging {
+	background: var(--cjenik-surface-strong);
+	border-color: var(--cjenik-ink);
+}
+
+.cjenik-admin .cjenik-dropzone:focus-within {
+	outline: 2px solid var(--cjenik-ink);
+	outline-offset: 2px;
+}
+
+.cjenik-admin .cjenik-dropzone__input {
+	position: absolute;
+	inset: 0;
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	opacity: 0;
+	cursor: pointer;
+}
+
+.cjenik-admin .cjenik-dropzone__title {
+	color: var(--cjenik-ink);
+	font-size: 16px;
+	font-weight: 500;
+	line-height: 24px;
+}
+
+.cjenik-admin .cjenik-dropzone__hint {
+	color: var(--cjenik-muted);
+	font-size: 14px;
+	line-height: 20px;
+}
+
+.cjenik-admin .cjenik-file {
+	display: flex;
+	gap: 12px;
+	align-items: center;
+	padding: 10px 12px;
+	border: 1px solid var(--cjenik-border);
+	border-radius: var(--cjenik-radius-control);
+}
+
+.cjenik-admin .cjenik-file[hidden] {
+	display: none;
+}
+
+.cjenik-admin .cjenik-file__name {
+	flex: 1;
+	min-width: 0;
+	overflow: hidden;
+	font-family: var(--cjenik-mono);
+	font-weight: 500;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.cjenik-admin .cjenik-file__size {
+	color: var(--cjenik-muted);
+	font-family: var(--cjenik-mono);
+	font-weight: 500;
+}
+
+.cjenik-admin .cjenik-link.is-muted,
+.cjenik-admin .cjenik-link.is-muted:hover {
+	color: var(--cjenik-muted);
+}
+
+.cjenik-admin .cjenik-upload__actions {
+	padding-top: 8px;
+}
+
+/* Toast: bottom right, 360px, ink; goes after 6 s or on a click. Only
+   confirmations use it; a problem stays as a notice. */
+.cjenik-admin .cjenik-toast {
+	position: fixed;
+	right: 24px;
+	bottom: 24px;
+	z-index: 100000;
+	display: flex;
+	gap: 12px;
+	align-items: center;
+	box-sizing: border-box;
+	width: 360px;
+	max-width: calc(100vw - 48px);
+	padding: 14px 16px;
+	background: var(--cjenik-ink);
+	border-radius: 10px;
+	box-shadow: var(--cjenik-shadow-toast);
+	color: var(--cjenik-on-ink);
+	font-family: var(--cjenik-sans);
+	font-size: 14px;
+	font-weight: 500;
+	line-height: 20px;
+	animation: cjenik-toast-in 200ms cubic-bezier(0.2, 0, 0, 1);
+	transition: opacity 200ms, transform 200ms;
+}
+
+.cjenik-admin .cjenik-toast::before {
+	content: "";
+	flex: none;
+	width: 8px;
+	height: 8px;
+	background: var(--cjenik-success);
+	border-radius: 4px;
+}
+
+.cjenik-admin .cjenik-toast p {
+	flex: 1;
+	margin: 0;
+	font-size: 14px;
+	line-height: 20px;
+}
+
+.cjenik-admin .cjenik-toast__close {
+	padding: 0 4px;
+	background: none;
+	border: 0;
+	color: var(--cjenik-on-ink-muted);
+	font-size: 18px;
+	line-height: 20px;
+	cursor: pointer;
+}
+
+.cjenik-admin .cjenik-toast.is-leaving {
+	opacity: 0;
+	transform: translateY(8px);
+}
+
+@keyframes cjenik-toast-in {
+	from {
+		opacity: 0;
+		transform: translateY(8px);
+	}
+}
+
+@media screen and (max-width: 960px) {
+	.cjenik-admin .cjenik-imports {
+		grid-template-columns: minmax(0, 1fr);
+	}
+}
+
+/* Below wp-admin's 782px breakpoint the table scrolls sideways with the
+   date column pinned. */
+@media screen and (max-width: 782px) {
+	.cjenik-admin .cjenik-card__header {
+		padding: 16px;
+	}
+
+	.cjenik-admin .cjenik-filters,
+	.cjenik-admin .cjenik-search {
+		flex: 1 1 100%;
+	}
+
+	.cjenik-admin .cjenik-search input[type="search"] {
+		flex: 1;
+		width: auto;
+	}
+
+	.cjenik-admin .cjenik-table .is-file {
+		min-width: 280px;
+	}
+
+	.cjenik-admin .cjenik-table th:first-child,
+	.cjenik-admin .cjenik-table td:first-child {
+		position: sticky;
+		left: 0;
+		z-index: 1;
+		padding-left: 16px;
+		background: var(--cjenik-bg);
+		box-shadow: inset -1px 0 0 var(--cjenik-border);
+	}
+
+	.cjenik-admin .cjenik-table thead th:first-child {
+		background: var(--cjenik-surface-strong);
+	}
+
+	.cjenik-admin .cjenik-table tbody tr.is-warning td:first-child {
+		background: var(--cjenik-warning-tint);
+	}
+
+	.cjenik-admin .cjenik-card__footer {
+		padding: 12px 16px;
+	}
+
+	.cjenik-admin .cjenik-fields {
+		grid-template-columns: minmax(0, 1fr);
+		padding: 16px;
+	}
+
+	.cjenik-admin .cjenik-card__lede,
+	.cjenik-admin .cjenik-actions {
+		padding-right: 16px;
+		padding-left: 16px;
+	}
+
+	/* On a phone a floating bar would cover the fields; it ends the form. */
+	.cjenik-admin .cjenik-actions {
+		position: static;
+		box-shadow: none;
+	}
+
+	.cjenik-admin .cjenik-upload {
+		padding: 0 16px 16px;
+	}
+
+	.cjenik-admin .cjenik-toast {
+		right: 16px;
+		bottom: 16px;
+		max-width: calc(100vw - 32px);
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.cjenik-admin .cjenik-icon-button,
+	.cjenik-admin .cjenik-button,
+	.cjenik-admin .cjenik-dropzone,
+	.cjenik-admin input.cjenik-switch,
+	.cjenik-admin input.cjenik-switch::before,
+	.cjenik-admin .cjenik-toast {
+		transition: none;
+		animation: none;
+	}
+}

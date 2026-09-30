@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+	<!-- Plugin icon: a price tag carrying an anchor (sidrena cijena). No third-party logos. -->
+	<defs>
+		<linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+			<stop offset="0" stop-color="#1b4a78"/>
+			<stop offset="1" stop-color="#0f2742"/>
+		</linearGradient>
+	</defs>
+	<rect width="256" height="256" rx="56" fill="url(#bg)"/>
+	<g transform="rotate(-35 128 128)">
+		<path d="M44 128 L92 76 H204 a14 14 0 0 1 14 14 V166 a14 14 0 0 1 -14 14 H92 Z" fill="#ffffff"/>
+		<circle cx="84" cy="128" r="10" fill="#1b4a78"/>
+	</g>
+	<g transform="translate(152 114) rotate(-35) scale(0.82)" fill="none" stroke="#d62839" stroke-width="10" stroke-linecap="round" stroke-linejoin="round">
+		<circle cx="0" cy="-36" r="9"/>
+		<line x1="0" y1="-27" x2="0" y2="38"/>
+		<line x1="-20" y1="-12" x2="20" y2="-12"/>
+		<path d="M-34 12 Q-30 40 0 40 Q30 40 34 12"/>
+		<path d="M-42 20 L-34 10 L-26 18"/>
+		<path d="M42 20 L34 10 L26 18"/>
+	</g>
+</svg>

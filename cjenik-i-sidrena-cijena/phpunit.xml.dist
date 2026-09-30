@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<phpunit
+	bootstrap="tests/bootstrap.php"
+	colors="true"
+	beStrictAboutTestsThatDoNotTestAnything="true"
+	convertDeprecationsToExceptions="true"
+>
+	<testsuites>
+		<testsuite name="cjenik">
+			<directory suffix="Test.php">tests</directory>
+		</testsuite>
+	</testsuites>
+	<groups>
+		<exclude>
+			<group>slow</group>
+		</exclude>
+	</groups>
+</phpunit>

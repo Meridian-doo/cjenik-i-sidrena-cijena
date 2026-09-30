@@ -1,0 +1,43 @@
+{
+	"$schema": "https://playground.wordpress.net/blueprint-schema.json",
+	"meta": {
+		"title": "Cjenik i sidrena cijena demo shop",
+		"description": "WooCommerce with a few products, a sale, an anchor price and one published price list.",
+		"author": "Meridian d.o.o."
+	},
+	"landingPage": "/wp-admin/admin.php?page=cjenik",
+	"preferredVersions": {
+		"php": "8.3",
+		"wp": "latest"
+	},
+	"features": {
+		"networking": true
+	},
+	"login": true,
+	"steps": [
+		{
+			"step": "installPlugin",
+			"pluginData": {
+				"resource": "wordpress.org/plugins",
+				"slug": "woocommerce"
+			},
+			"options": {
+				"activate": true
+			}
+		},
+		{
+			"step": "installPlugin",
+			"pluginData": {
+				"resource": "wordpress.org/plugins",
+				"slug": "cjenik-i-sidrena-cijena"
+			},
+			"options": {
+				"activate": true
+			}
+		},
+		{
+			"step": "runPHP",
+			"code": "<?php\nrequire_once '/wordpress/wp-load.php';\nforeach ( array(\n\t'blogname' => 'Demo trgovina',\n\t'timezone_string' => 'Europe/Zagreb',\n\t'permalink_structure' => '/%postname%/',\n\t'woocommerce_store_address' => 'Ilica 150',\n\t'woocommerce_store_city' => 'Zagreb',\n\t'woocommerce_store_postcode' => '10000',\n\t'woocommerce_default_country' => 'HR',\n\t'woocommerce_currency' => 'EUR',\n\t'woocommerce_currency_pos' => 'right_space',\n\t'woocommerce_price_decimal_sep' => ',',\n\t'woocommerce_price_thousand_sep' => '.',\n\t'woocommerce_coming_soon' => 'no',\n\t'woocommerce_onboarding_profile' => array( 'skipped' => true ),\n) as $name => $value ) {\n\tupdate_option( $name, $value );\n}\nflush_rewrite_rules();\n// Land on the price list status page, not WooCommerce's setup.\ndelete_transient( '_wc_activation_redirect' );\n$products = array(\n\tarray( 'Kava mljevena 500 g', '6.40', '', '3850000000011', 5.99 ),\n\tarray( 'Maslinovo ulje 1 l', '12.00', '9.90', '3850000000028', null ),\n\tarray( 'Čokolada 100 g', '1.99', '', '3850000000035', null ),\n);\nforeach ( $products as [ $name, $regular, $sale, $gtin, $anchor ] ) {\n\t$product = new WC_Product_Simple();\n\t$product->set_name( $name );\n\t$product->set_sku( 'DEMO-' . substr( $gtin, -3 ) );\n\t$product->set_global_unique_id( $gtin );\n\t$product->set_regular_price( $regular );\n\t$product->set_sale_price( $sale );\n\t$product->set_status( 'publish' );\n\t$product->save();\n\tif ( null !== $anchor ) {\n\t\tcjenik()->anchors()->set( $product->get_id(), $anchor, '2026-09-10', 'manual' );\n\t}\n}\ncjenik()->settings()->update( array( 'wizard_done' => true ) );\ncjenik()->scheduler()->publish_all();\n"
+		}
+	]
+}

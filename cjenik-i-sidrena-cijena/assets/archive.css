@@ -1,0 +1,298 @@
+/*
+ * The public price list archive ([cjenik_arhiva]). It renders inside any
+ * theme, so it inherits the theme's type and colours and brings only its own
+ * structure: the newest file first with its download, then every file that is
+ * still published. Lines and washes are tinted from the text colour, so they
+ * hold on light and dark themes alike. Selectors carry two classes so they win
+ * over a theme's `.entry-content h2`-style rules without `!important`.
+ */
+.cjenik-arhiva {
+	--cjenik-hair: rgba(0, 0, 0, 0.14);
+	--cjenik-hair: color-mix(in srgb, currentColor 16%, transparent);
+	--cjenik-wash: rgba(0, 0, 0, 0.05);
+	--cjenik-wash: color-mix(in srgb, currentColor 5%, transparent);
+	--cjenik-muted: rgba(0, 0, 0, 0.7);
+	--cjenik-muted: color-mix(in srgb, currentColor 72%, transparent);
+	--cjenik-ease: cubic-bezier(0.2, 0, 0, 1);
+	container-type: inline-size;
+	font-variant-numeric: tabular-nums;
+	line-height: 1.45;
+}
+
+/* The newest file: what most visitors came for. */
+.cjenik-arhiva .cjenik-arhiva__latest {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr) auto;
+	gap: 0.75em 2.5em;
+	align-items: center;
+	padding: 1.75em 0;
+	margin: 0 0 3em;
+	border-top: 2px solid currentColor;
+	border-bottom: 1px solid var(--cjenik-hair);
+}
+
+.cjenik-arhiva .cjenik-arhiva__title {
+	margin: 0;
+	font-size: 1.5em;
+	line-height: 1.2;
+	text-wrap: balance;
+}
+
+.cjenik-arhiva .cjenik-arhiva__meta {
+	margin: 0.5em 0 0;
+	color: var(--cjenik-muted);
+}
+
+.cjenik-arhiva .cjenik-arhiva__meta > span + span::before {
+	content: "\00B7";
+	margin: 0 0.5em;
+}
+
+.cjenik-arhiva .cjenik-arhiva__download {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.55em;
+	padding: 0.75em 1.25em;
+	border: 2px solid currentColor;
+	border-radius: 0.375em;
+	color: inherit;
+	font-weight: 600;
+	line-height: 1.2;
+	text-decoration: none;
+	white-space: nowrap;
+	transition: background-color 180ms var(--cjenik-ease), transform 180ms var(--cjenik-ease);
+}
+
+.cjenik-arhiva .cjenik-arhiva__download:hover {
+	background-color: var(--cjenik-wash);
+	color: inherit;
+	text-decoration: none;
+}
+
+.cjenik-arhiva .cjenik-arhiva__download:active {
+	transform: translateY(1px);
+}
+
+.cjenik-arhiva .cjenik-arhiva__download svg {
+	flex: none;
+	width: 1.1em;
+	height: 1.1em;
+}
+
+.cjenik-arhiva .cjenik-arhiva__download:hover svg {
+	animation: cjenik-arhiva-drop 360ms var(--cjenik-ease);
+}
+
+@keyframes cjenik-arhiva-drop {
+	from { transform: translateY(-0.2em); }
+	to { transform: none; }
+}
+
+.cjenik-arhiva .cjenik-arhiva__links {
+	grid-column: 1 / -1;
+	margin: 0;
+	font-size: 0.875em;
+	color: var(--cjenik-muted);
+}
+
+.cjenik-arhiva .cjenik-arhiva__links a {
+	overflow-wrap: anywhere;
+}
+
+/* Every file still published, newest first. */
+.cjenik-arhiva .cjenik-arhiva__heading {
+	margin: 0 0 0.75em;
+	font-size: 1.125em;
+	line-height: 1.3;
+}
+
+.cjenik-arhiva .cjenik-arhiva__table {
+	width: 100%;
+	margin: 0;
+	border: 0;
+	border-collapse: collapse;
+	border-spacing: 0;
+	font-family: inherit;
+	font-size: 0.9375em;
+}
+
+.cjenik-arhiva .cjenik-arhiva__table th,
+.cjenik-arhiva .cjenik-arhiva__table td {
+	padding: 0.7em 0.75em;
+	border: 0;
+	border-bottom: 1px solid var(--cjenik-hair);
+	text-align: left;
+	vertical-align: baseline;
+}
+
+.cjenik-arhiva .cjenik-arhiva__table th {
+	font-size: 0.875em;
+	font-weight: 600;
+	color: var(--cjenik-muted);
+	vertical-align: bottom;
+	border-bottom: 2px solid currentColor;
+}
+
+.cjenik-arhiva .cjenik-arhiva__table th:first-child,
+.cjenik-arhiva .cjenik-arhiva__table td:first-child {
+	padding-left: 0.5em;
+}
+
+.cjenik-arhiva .cjenik-arhiva__table tbody tr {
+	transition: background-color 150ms var(--cjenik-ease);
+}
+
+.cjenik-arhiva .cjenik-arhiva__table tbody tr:hover {
+	background-color: var(--cjenik-wash);
+}
+
+.cjenik-arhiva .cjenik-arhiva__time {
+	white-space: nowrap;
+}
+
+.cjenik-arhiva .cjenik-arhiva__time b {
+	font-weight: 600;
+}
+
+.cjenik-arhiva .cjenik-arhiva__table th.cjenik-arhiva__num,
+.cjenik-arhiva .cjenik-arhiva__table td.cjenik-arhiva__num {
+	text-align: right;
+}
+
+.cjenik-arhiva .cjenik-arhiva__table td.cjenik-arhiva__num {
+	white-space: nowrap;
+}
+
+.cjenik-arhiva .cjenik-arhiva__file {
+	width: 100%;
+}
+
+.cjenik-arhiva .cjenik-arhiva__file a {
+	overflow-wrap: anywhere;
+}
+
+.cjenik-arhiva .cjenik-arhiva__note {
+	margin: 1.25em 0 0;
+	font-size: 0.875em;
+	color: var(--cjenik-muted);
+}
+
+.cjenik-arhiva a:not(.cjenik-arhiva__download) {
+	text-decoration-thickness: 1px;
+	text-underline-offset: 0.18em;
+	transition: text-decoration-thickness 150ms var(--cjenik-ease);
+}
+
+.cjenik-arhiva a:not(.cjenik-arhiva__download):hover {
+	text-decoration-thickness: 2px;
+}
+
+.cjenik-arhiva a:focus-visible {
+	outline: 2px solid currentColor;
+	outline-offset: 3px;
+	border-radius: 2px;
+}
+
+/* Nothing published yet. */
+.cjenik-arhiva.cjenik-arhiva--empty {
+	padding: 1.75em 0;
+	border-top: 2px solid currentColor;
+	border-bottom: 1px solid var(--cjenik-hair);
+}
+
+.cjenik-arhiva.cjenik-arhiva--empty p {
+	margin: 0;
+	color: var(--cjenik-muted);
+}
+
+/*
+ * Narrow content areas, measured on the archive itself rather than the
+ * viewport, because themes give content anything from 560 to 1200 px.
+ */
+
+/* The download moves under the summary once the two no longer sit side by side. */
+@container (max-width: 44em) {
+	.cjenik-arhiva .cjenik-arhiva__latest {
+		grid-template-columns: minmax(0, 1fr);
+		gap: 1.25em;
+		justify-items: start;
+	}
+}
+
+/* Each row becomes a stanza: when, then the numbers, then the file. */
+@container (max-width: 34em) {
+	.cjenik-arhiva .cjenik-arhiva__download {
+		justify-self: stretch;
+		justify-content: center;
+		white-space: normal;
+	}
+
+	.cjenik-arhiva .cjenik-arhiva__meta > span {
+		display: block;
+	}
+
+	.cjenik-arhiva .cjenik-arhiva__meta > span + span::before {
+		content: none;
+	}
+
+	.cjenik-arhiva .cjenik-arhiva__table thead {
+		position: absolute;
+		width: 1px;
+		height: 1px;
+		overflow: hidden;
+		clip: rect(0 0 0 0);
+		clip-path: inset(50%);
+		white-space: nowrap;
+	}
+
+	.cjenik-arhiva .cjenik-arhiva__table,
+	.cjenik-arhiva .cjenik-arhiva__table tbody {
+		display: block;
+	}
+
+	.cjenik-arhiva .cjenik-arhiva__table tbody tr {
+		display: grid;
+		grid-template-columns: auto auto minmax(0, 1fr);
+		column-gap: 1em;
+		padding: 0.9em 0;
+		border-bottom: 1px solid var(--cjenik-hair);
+	}
+
+	.cjenik-arhiva .cjenik-arhiva__table tbody tr:first-child {
+		border-top: 2px solid currentColor;
+	}
+
+	.cjenik-arhiva .cjenik-arhiva__table td {
+		display: block;
+		padding: 0;
+		border: 0;
+	}
+
+	.cjenik-arhiva .cjenik-arhiva__table td:first-child {
+		grid-column: 1 / -1;
+		padding-left: 0;
+	}
+
+	.cjenik-arhiva .cjenik-arhiva__table td.cjenik-arhiva__num {
+		margin-top: 0.15em;
+		text-align: left;
+		color: var(--cjenik-muted);
+	}
+
+	.cjenik-arhiva .cjenik-arhiva__table td.cjenik-arhiva__num::before {
+		content: attr(data-label) ": ";
+	}
+
+	.cjenik-arhiva .cjenik-arhiva__file {
+		grid-column: 1 / -1;
+		margin-top: 0.35em;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.cjenik-arhiva *,
+	.cjenik-arhiva *::before {
+		transition: none;
+		animation: none;
+	}
+}

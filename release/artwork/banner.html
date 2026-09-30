@@ -1,0 +1,52 @@
+<!doctype html>
+<!-- Plugin banner. Rendered at 772×250 and 1544×500 by render.mjs; ?lang=hr for the Croatian one.
+     Every word drawn here must also be in release/asset-text.json (the wording rules read that file). -->
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+	* { box-sizing: border-box; margin: 0; }
+	html, body { width: 772px; height: 250px; overflow: hidden; }
+	body {
+		font-family: "Noto Sans", "Liberation Sans", sans-serif;
+		background: linear-gradient(120deg, #1b4a78 0%, #0f2742 70%);
+		color: #fff;
+		position: relative;
+	}
+	.icon { position: absolute; left: 36px; top: 34px; width: 64px; height: 64px; }
+	.title { position: absolute; left: 36px; top: 112px; font-size: 34px; font-weight: 700; letter-spacing: -0.3px; }
+	.tagline { position: absolute; left: 36px; top: 162px; width: 400px; font-size: 16px; line-height: 1.4; color: #cfe0f5; }
+	.card {
+		position: absolute; right: 34px; top: 40px; width: 272px;
+		background: #fff; color: #1d2733; border-radius: 10px;
+		box-shadow: 0 14px 30px rgba(0, 0, 0, .35);
+		transform: rotate(-3deg); overflow: hidden; font-size: 11.5px;
+	}
+	.file { background: #e8eef6; padding: 8px 12px; font-weight: 700; color: #12304f; display: flex; justify-content: space-between; }
+	.file span:last-child { color: #d62839; }
+	table { width: 100%; border-collapse: collapse; }
+	th, td { padding: 6px 12px; text-align: left; border-bottom: 1px solid #edf0f4; white-space: nowrap; }
+	th { font-weight: 600; color: #5b6b7d; font-size: 10.5px; }
+	td.num, th.num { text-align: right; }
+	td.anchor { color: #d62839; font-weight: 600; }
+</style>
+</head>
+<body>
+	<img class="icon" src="icon.svg" alt="">
+	<div class="title">Cjenik i sidrena cijena</div>
+	<div class="tagline" data-en="Daily price list and anchor price for WooCommerce shops in Croatia." data-hr="Pomaže Vam svaki dan do 8:00 objaviti cjenik i prikazati sidrenu cijenu."></div>
+	<div class="card">
+		<div class="file"><span>cjenik.csv</span><span>05:00</span></div>
+		<table>
+			<tr><th>Naziv</th><th class="num">Cijena</th><th class="num">Sidrena cijena</th></tr>
+			<tr><td>Kava 500 g</td><td class="num">6,40 €</td><td class="num anchor">5,99 €</td></tr>
+			<tr><td>Maslinovo ulje 1 l</td><td class="num">9,90 €</td><td class="num anchor">12,00 €</td></tr>
+			<tr><td>Čokolada 100 g</td><td class="num">1,99 €</td><td class="num anchor">1,99 €</td></tr>
+		</table>
+	</div>
+	<script>
+		const tagline = document.querySelector( '.tagline' );
+		tagline.textContent = tagline.dataset[ new URLSearchParams( location.search ).get( 'lang' ) === 'hr' ? 'hr' : 'en' ];
+	</script>
+</body>
+</html>
