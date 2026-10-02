@@ -34,6 +34,7 @@ final class Catalogue {
 	 */
 	public static function item_ids_after( int $after_id, int $limit ): array {
 		global $wpdb;
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery -- Pages through the catalogue by ID, which WP_Query can't do without loading every product; nothing to cache.
 		$ids = $wpdb->get_col(
 			// phpcs:ignore WordPress.DB.PreparedSQLPlaceholders.ReplacementsWrongNumber -- One %s per CONTAINER_TYPES entry in the IN () below.
 			$wpdb->prepare(
@@ -64,12 +65,12 @@ final class Catalogue {
 	 * @return \Generator<WC_Product>
 	 */
 	public static function items( int $batch_size = 500, ?callable $before_batch = null ): \Generator {
-		global $wpdb;
 		$after = 0;
 		while ( $ids = self::item_ids_after( $after, $batch_size ) ) { // phpcs:ignore Generic.CodeAnalysis.AssignmentInCondition
-			$in      = implode( ',', $ids );
-			$parents = array_map( 'intval', $wpdb->get_col( "SELECT DISTINCT post_parent FROM {$wpdb->posts} WHERE ID IN ($in) AND post_parent > 0" ) ); // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- Integers.
-			_prime_post_caches( array_merge( $ids, $parents ), true, true );
+			_prime_post_caches( $ids, true, true );
+			// Variations need their parent product loaded too.
+			$parents = array_unique( array_filter( array_map( static fn( int $id ): int => (int) get_post_field( 'post_parent', $id ), $ids ) ) );
+			_prime_post_caches( $parents, true, true );
 			if ( $before_batch ) {
 				$before_batch( $ids );
 			}

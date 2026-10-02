@@ -152,7 +152,7 @@ final class SettingsPage {
 			sprintf(
 				/* translators: %s: URL */
 				__( 'Need several outlets, a service price list, monitoring from outside your site or an evidence pack for inspections? <a href="%s">Cjenik Pro</a> adds them.', 'cjenik-i-sidrena-cijena' ),
-				'https://github.com/Meridian-doo/cjenik-i-sidrena-cijena'
+				'https://cjenik.dev/#cjenik-pro'
 			),
 			array( 'a' => array( 'href' => array() ) )
 		) . '</p>';

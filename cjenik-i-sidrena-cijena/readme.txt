@@ -1,5 +1,5 @@
 === Cjenik i sidrena cijena ===
-Contributors: meridiandoo
+Contributors: leonardmeridian
 Tags: cjenik, sidrena cijena, najniža cijena, woocommerce, croatia
 Requires at least: 6.8
 Tested up to: 7.1

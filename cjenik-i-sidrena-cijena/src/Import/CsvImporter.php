@@ -172,6 +172,7 @@ final class CsvImporter {
 		if ( ! str_starts_with( $source, 'meta:' ) ) {
 			return (int) wc_get_product_id_by_global_unique_id( $barcode );
 		}
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery -- One lookup per imported row by the shop's own barcode meta key; a meta_query would be slower.
 		return (int) $wpdb->get_var(
 			$wpdb->prepare( "SELECT post_id FROM {$wpdb->postmeta} WHERE meta_key = %s AND meta_value = %s LIMIT 1", substr( $source, 5 ), $barcode )
 		);

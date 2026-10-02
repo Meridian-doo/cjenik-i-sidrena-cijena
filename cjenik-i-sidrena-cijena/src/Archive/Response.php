@@ -34,7 +34,7 @@ final class Response {
 		if ( null !== $this->file ) {
 			readfile( $this->file ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_readfile
 		} else {
-			echo $this->body; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			echo $this->body; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Not HTML: the archive's JSON index or a plain-text error, sent with that Content-Type.
 		}
 		exit;
 	}

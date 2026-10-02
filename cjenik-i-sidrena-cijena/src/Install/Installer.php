@@ -96,13 +96,13 @@ final class Installer {
 		if ( $page_id ) {
 			wp_delete_post( $page_id, true );
 		}
-		// phpcs:disable WordPress.DB.DirectDatabaseQuery.SchemaChange
+		// phpcs:disable WordPress.DB.DirectDatabaseQuery -- Uninstall drops the plugin's own tables and deletes its own meta and options.
 		$wpdb->query( "DROP TABLE IF EXISTS {$wpdb->prefix}cjenik_price_history" );
 		$wpdb->query( "DROP TABLE IF EXISTS {$wpdb->prefix}cjenik_publications" );
-		// phpcs:enable
 		$wpdb->query( "DELETE FROM {$wpdb->postmeta} WHERE meta_key LIKE '\\_cjenik\\_%'" );
 		$wpdb->query( "DELETE FROM {$wpdb->usermeta} WHERE meta_key LIKE 'cjenik\\_%'" );
 		$wpdb->query( "DELETE FROM {$wpdb->options} WHERE option_name LIKE 'cjenik\\_%'" );
+		// phpcs:enable
 
 		$dir = wp_upload_dir( null, false )['basedir'] . '/cjenik';
 		foreach ( (array) glob( $dir . '/{,.}*', GLOB_BRACE ) as $file ) {

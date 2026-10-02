@@ -59,17 +59,10 @@
 	</rule>
 
 	<!--
-	Price History and the Publication Log are the plugin's own tables, and the
-	catalogue is read in ID-ordered pages straight from the posts table so large
-	shops never load at once. None of these queries has anything to cache.
+	Direct queries in src/ carry a phpcs:ignore with their reason, so Plugin
+	Check (which doesn't read this file) sees them too.
 	-->
 	<rule ref="WordPress.DB.DirectDatabaseQuery">
-		<exclude-pattern>/src/Catalogue\.php</exclude-pattern>
-		<exclude-pattern>/src/Import/CsvImporter\.php</exclude-pattern>
-		<exclude-pattern>/src/Install/Installer\.php</exclude-pattern>
-		<exclude-pattern>/src/Prices/PriceHistory\.php</exclude-pattern>
-		<exclude-pattern>/src/Publishing/PublicationLog\.php</exclude-pattern>
-		<exclude-pattern>/src/Publishing/Publisher\.php</exclude-pattern>
 		<exclude-pattern>/tests/*</exclude-pattern>
 	</rule>
 

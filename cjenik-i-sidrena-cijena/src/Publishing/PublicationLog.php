@@ -8,6 +8,8 @@ namespace Cjenik\Publishing;
 use Cjenik\Zagreb;
 use DateTimeImmutable;
 
+// phpcs:disable WordPress.DB.DirectDatabaseQuery -- The Publication Log is the plugin's own table, read through $wpdb->prepare().
+
 /**
  * The Publication Log: evidence of every file published, and the source of
  * truth for the "latest" URL, the archive and retention.
@@ -66,24 +68,25 @@ final class PublicationLog {
 
 	/** The Outlet's newest published file. */
 	public function latest( string $outlet_id ): ?Publication {
-		return $this->first_where( 'outlet_id = %s AND status = %s AND deleted_at IS NULL', array( $outlet_id, Publication::SUCCESS ) );
+		global $wpdb;
+		return self::one( $wpdb->get_row( $wpdb->prepare( "SELECT * FROM {$this->table()} WHERE outlet_id = %s AND status = %s AND deleted_at IS NULL ORDER BY published_at DESC, id DESC LIMIT 1", $outlet_id, Publication::SUCCESS ) ) ); // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
 	}
 
 	/** The Outlet's newest attempt, successful or not. */
 	public function last_attempt( string $outlet_id ): ?Publication {
-		return $this->first_where( 'outlet_id = %s', array( $outlet_id ) );
+		global $wpdb;
+		return self::one( $wpdb->get_row( $wpdb->prepare( "SELECT * FROM {$this->table()} WHERE outlet_id = %s ORDER BY published_at DESC, id DESC LIMIT 1", $outlet_id ) ) ); // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
 	}
 
 	/** The Outlet's newest successful file published on or after a moment. */
 	public function published_since( string $outlet_id, DateTimeImmutable $since ): ?Publication {
-		return $this->first_where(
-			'outlet_id = %s AND status = %s AND published_at >= %s',
-			array( $outlet_id, Publication::SUCCESS, Zagreb::to_db( $since ) )
-		);
+		global $wpdb;
+		return self::one( $wpdb->get_row( $wpdb->prepare( "SELECT * FROM {$this->table()} WHERE outlet_id = %s AND status = %s AND published_at >= %s ORDER BY published_at DESC, id DESC LIMIT 1", $outlet_id, Publication::SUCCESS, Zagreb::to_db( $since ) ) ) ); // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
 	}
 
 	public function by_storage_number( string $outlet_id, int $storage_number ): ?Publication {
-		return $this->first_where( 'outlet_id = %s AND storage_number = %d', array( $outlet_id, $storage_number ) );
+		global $wpdb;
+		return self::one( $wpdb->get_row( $wpdb->prepare( "SELECT * FROM {$this->table()} WHERE outlet_id = %s AND storage_number = %d ORDER BY published_at DESC, id DESC LIMIT 1", $outlet_id, $storage_number ) ) ); // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
 	}
 
 	/**
@@ -92,7 +95,8 @@ final class PublicationLog {
 	 * @return list<Publication>
 	 */
 	public function available( string $outlet_id ): array {
-		return $this->where( 'outlet_id = %s AND status = %s AND deleted_at IS NULL', array( $outlet_id, Publication::SUCCESS ) );
+		global $wpdb;
+		return self::many( $wpdb->get_results( $wpdb->prepare( "SELECT * FROM {$this->table()} WHERE outlet_id = %s AND status = %s AND deleted_at IS NULL ORDER BY published_at DESC, id DESC", $outlet_id, Publication::SUCCESS ) ) ); // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
 	}
 
 	/**
@@ -102,13 +106,12 @@ final class PublicationLog {
 	 * @return list<Publication>
 	 */
 	public function expired( string $outlet_id, DateTimeImmutable $cutoff ): array {
+		global $wpdb;
 		$latest = $this->latest( $outlet_id );
+		$rows   = $wpdb->get_results( $wpdb->prepare( "SELECT * FROM {$this->table()} WHERE outlet_id = %s AND status = %s AND deleted_at IS NULL AND published_at < %s ORDER BY published_at DESC, id DESC", $outlet_id, Publication::SUCCESS, Zagreb::to_db( $cutoff ) ) ); // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
 		return array_values(
 			array_filter(
-				$this->where(
-					'outlet_id = %s AND status = %s AND deleted_at IS NULL AND published_at < %s',
-					array( $outlet_id, Publication::SUCCESS, Zagreb::to_db( $cutoff ) )
-				),
+				self::many( $rows ),
 				static fn( Publication $publication ) => ! $latest || $publication->id !== $latest->id
 			)
 		);
@@ -128,49 +131,52 @@ final class PublicationLog {
 	 */
 	public function entries( int $limit = 50, int $offset = 0, ?string $outlet_id = null, string $search = '', ?DateTimeImmutable $since = null ): array {
 		global $wpdb;
+		$args = array_merge( $this->filter( $outlet_id, $search, $since ), array( $limit, $offset ) );
 		$rows = $wpdb->get_results(
-			$wpdb->prepare( "SELECT * FROM {$this->table()} WHERE {$this->conditions( $outlet_id, $search, $since )} ORDER BY published_at DESC, id DESC LIMIT %d OFFSET %d", $limit, $offset ) // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+			// phpcs:ignore WordPress.DB.PreparedSQLPlaceholders.ReplacementsWrongNumber -- $args has one value per placeholder.
+			$wpdb->prepare(
+				"SELECT * FROM {$this->table()} WHERE ( %s = '' OR outlet_id = %s ) AND file_name LIKE %s AND ( %s = '' OR published_at >= %s ) ORDER BY published_at DESC, id DESC LIMIT %d OFFSET %d", // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+				$args
+			)
 		);
-		return array_map( array( Publication::class, 'from_row' ), $rows );
+		return self::many( $rows );
 	}
 
 	public function count( ?string $outlet_id = null, string $search = '', ?DateTimeImmutable $since = null ): int {
 		global $wpdb;
-		return (int) $wpdb->get_var( "SELECT COUNT(*) FROM {$this->table()} WHERE {$this->conditions( $outlet_id, $search, $since )}" ); // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
-	}
-
-	/** The prepared WHERE conditions for entries() and count(). */
-	private function conditions( ?string $outlet_id, string $search, ?DateTimeImmutable $since ): string {
-		global $wpdb;
-		$where = array( '1 = 1' );
-		if ( null !== $outlet_id ) {
-			$where[] = $wpdb->prepare( 'outlet_id = %s', $outlet_id );
-		}
-		if ( '' !== $search ) {
-			$where[] = $wpdb->prepare( 'file_name LIKE %s', '%' . $wpdb->esc_like( $search ) . '%' );
-		}
-		if ( null !== $since ) {
-			$where[] = $wpdb->prepare( 'published_at >= %s', Zagreb::to_db( $since ) );
-		}
-		return implode( ' AND ', $where );
+		$args = $this->filter( $outlet_id, $search, $since );
+		return (int) $wpdb->get_var(
+			// phpcs:ignore WordPress.DB.PreparedSQLPlaceholders.ReplacementsWrongNumber -- $args has one value per placeholder.
+			$wpdb->prepare(
+				"SELECT COUNT(*) FROM {$this->table()} WHERE ( %s = '' OR outlet_id = %s ) AND file_name LIKE %s AND ( %s = '' OR published_at >= %s )", // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+				$args
+			)
+		);
 	}
 
 	/**
-	 * @param list<string|int> $args
+	 * The values for the filter in entries() and count(). An empty string
+	 * turns its condition off.
+	 *
+	 * @return list<string>
 	 */
-	private function first_where( string $where, array $args ): ?Publication {
+	private function filter( ?string $outlet_id, string $search, ?DateTimeImmutable $since ): array {
 		global $wpdb;
-		$row = $wpdb->get_row( $wpdb->prepare( "SELECT * FROM {$this->table()} WHERE {$where} ORDER BY published_at DESC, id DESC LIMIT 1", $args ) ); // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared, WordPress.DB.PreparedSQLPlaceholders.UnfinishedPrepare -- $where holds the placeholders for $args.
+		$outlet_id = $outlet_id ?? '';
+		$since     = $since ? Zagreb::to_db( $since ) : '';
+		return array( $outlet_id, $outlet_id, '%' . $wpdb->esc_like( $search ) . '%', $since, $since );
+	}
+
+	/** @param object|null $row */
+	private static function one( $row ): ?Publication {
 		return $row ? Publication::from_row( $row ) : null;
 	}
 
 	/**
-	 * @param list<string|int> $args
+	 * @param array<object>|null $rows
 	 * @return list<Publication>
 	 */
-	private function where( string $where, array $args ): array {
-		global $wpdb;
-		$rows = $wpdb->get_results( $wpdb->prepare( "SELECT * FROM {$this->table()} WHERE {$where} ORDER BY published_at DESC, id DESC", $args ) ); // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared, WordPress.DB.PreparedSQLPlaceholders.UnfinishedPrepare -- $where holds the placeholders for $args.
-		return array_map( array( Publication::class, 'from_row' ), $rows );
+	private static function many( $rows ): array {
+		return array_map( array( Publication::class, 'from_row' ), $rows ?? array() );
 	}
 }

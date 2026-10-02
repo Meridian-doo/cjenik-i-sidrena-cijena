@@ -140,11 +140,13 @@ final class Publisher {
 		 * Seconds to wait for another publication of the same Outlet to finish.
 		 */
 		$timeout = (int) apply_filters( 'cjenik_publish_lock_timeout', self::LOCK_TIMEOUT );
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery -- A MySQL named lock, which has no WordPress API.
 		return '1' === (string) $wpdb->get_var( $wpdb->prepare( 'SELECT GET_LOCK(%s, %d)', $name, $timeout ) );
 	}
 
 	private function unlock( string $name ): void {
 		global $wpdb;
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery -- A MySQL named lock, which has no WordPress API.
 		$wpdb->query( $wpdb->prepare( 'SELECT RELEASE_LOCK(%s)', $name ) );
 	}
 }

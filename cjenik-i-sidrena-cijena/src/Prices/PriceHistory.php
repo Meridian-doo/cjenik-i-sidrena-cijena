@@ -11,6 +11,8 @@ use Cjenik\Zagreb;
 use DateTimeImmutable;
 use WC_Product;
 
+// phpcs:disable WordPress.DB.DirectDatabaseQuery -- Price History is the plugin's own table, read through $wpdb->prepare().
+
 /**
  * Records every price an item was offered at, and answers "what was the price
  * then" and "what was the lowest price in the 30 days before".
@@ -57,7 +59,7 @@ final class PriceHistory {
 				$at
 			)
 		);
-		// phpcs:enable
+		// phpcs:enable WordPress.DB.PreparedSQL.InterpolatedNotPrepared
 		$found = array_fill_keys( array_map( 'intval', $item_ids ), null );
 		foreach ( $rows as $row ) {
 			$found[ (int) $row->item_id ] = Observation::from_row( $row );

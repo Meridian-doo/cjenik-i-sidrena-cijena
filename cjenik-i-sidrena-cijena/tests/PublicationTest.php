@@ -38,12 +38,13 @@ final class PublicationTest extends PublicationTestCase {
 				'sku'       => 'HR-KAVA',
 				'regular'   => '8.00',
 				'sale'      => '6.40',
-				'sale_from' => '2026-10-01 00:00',
+				'sale_from' => '2099-10-01 00:00',
 			)
 		);
 
 		// WooCommerce's scheduled-sales job hasn't run, so the stored _price is still 8.00.
-		$row = $this->rows_by_code( $this->publish_at( '2026-10-01 05:00' ) )['HR-KAVA'];
+		// The sale starts in the far future because WooCommerce compares it with the real clock on save.
+		$row = $this->rows_by_code( $this->publish_at( '2099-10-01 05:00' ) )['HR-KAVA'];
 
 		$this->assertSame( '8.00', get_post_meta( wc_get_product_id_by_sku( 'HR-KAVA' ), '_price', true ) );
 		$this->assertSame( array( '8,00', 'DA', 'Akcija' ), array( $row['maloprodajna cijena'], $row['poseban oblik prodaje'], $row['naziv posebnog oblika prodaje'] ) );

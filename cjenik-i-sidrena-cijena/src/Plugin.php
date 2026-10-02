@@ -52,6 +52,7 @@ final class Plugin {
 		add_action(
 			'init',
 			static function (): void {
+				// phpcs:ignore PluginCheck.CodeAnalysis.DiscouragedFunctions.load_plugin_textdomainFound -- Loads the bundled Croatian translation until the WordPress.org language pack exists.
 				load_plugin_textdomain( 'cjenik-i-sidrena-cijena', false, dirname( plugin_basename( CJENIK_FILE ) ) . '/languages' );
 			}
 		);
