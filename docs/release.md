@@ -30,7 +30,7 @@ The plugin is published as **Cjenik i sidrena cijena**. Its slug, folder, main f
 It fails on the first broken rule, in this order:
 
 1. **Artifact**: no `.sh`, `.phar`, archives, hidden files, tests or dev tooling in the zip; under 10 MB; one top-level folder and a main file named after the slug.
-2. **Metadata**: readme parses; the name produces the slug and uses "WooCommerce" only as a trailing "for WooCommerce"; exactly 5 tags; short description ≤ 150 characters; `Stable tag` = `Version` = `CJENIK_VERSION` = newest changelog entry; `Tested up to` / `Requires at least` / `Requires PHP` agree between header and readme; text domain = slug; changelog trimmed; disclaimer present.
+2. **Metadata**: readme parses; the name produces the slug and uses "WooCommerce" only as a trailing "for WooCommerce"; exactly 5 tags; short description ≤ 150 characters; `Stable tag` = `Version` = `CJENIK_VERSION` = newest changelog entry; `Requires at least` / `Requires PHP` agree between header and readme; `Tested up to` is only in the readme (WordPress.org's upload scan rejects it in the header); text domain = slug; changelog trimmed; disclaimer present.
 3. **Wording**: no compliance claims ("usklađen", "zakonski", "100%", "compliant", …) in the name, readme, translations or asset text, except the disclaimer sentence.
 4. **Translation**: `readme-hr.po` was generated from this readme and is fully translated (name copied unchanged); the code PO translates every POT string and the `.mo` is compiled from it.
 5. **Assets**: names, sizes and limits of icon, banners and screenshots (English and `-hr`, one screenshot per readme caption); `blueprint.json` valid, ≤ 100 KB, sets no language.

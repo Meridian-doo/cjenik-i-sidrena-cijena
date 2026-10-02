@@ -48,6 +48,7 @@ export const STATIC_FIXTURES = [
 	{ rule: 'metadata.short-description', name: 'a 151-character short description', mutate: ( ws ) => readme( ws, ( s ) => s.replace( /lowest 30-day price\.\n/, 'lowest 30-day price. Xx\n' ) ) },
 	{ rule: 'metadata.versions', name: 'a Stable tag ahead of the Version header', mutate: ( ws ) => readme( ws, ( s ) => s.replace( /^Stable tag: .+$/m, 'Stable tag: 99.0.0' ) ) },
 	{ rule: 'metadata.requirements', name: 'a readme Requires PHP that disagrees with the header', mutate: ( ws ) => readme( ws, ( s ) => s.replace( /^Requires PHP: .+$/m, 'Requires PHP: 7.4' ) ) },
+	{ rule: 'metadata.requirements', name: 'a Tested up to line in the plugin header', mutate: ( ws ) => main( ws, ( s ) => s.replace( /^( \* Requires PHP:.*\n)/m, ' * Tested up to:      7.1\n$1' ) ) },
 	{ rule: 'metadata.text-domain', name: 'the old text domain in the header', mutate: ( ws ) => main( ws, ( s ) => s.replace( /Text Domain:(\s*).+/, 'Text Domain:$1cjenik-sidrena-cijena' ) ) },
 	{
 		rule: 'metadata.changelog',

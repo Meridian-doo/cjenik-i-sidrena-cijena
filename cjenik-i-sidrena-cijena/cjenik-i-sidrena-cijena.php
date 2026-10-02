@@ -5,7 +5,6 @@
  * Description:       Helps Croatian WooCommerce shops publish the daily price list (cjenik) and show the anchor price and the lowest 30-day price.
  * Version:           0.1.0
  * Requires at least: 6.8
- * Tested up to:      7.1
  * Requires PHP:      8.1
  * Requires Plugins:  woocommerce
  * Author:            Meridian d.o.o.

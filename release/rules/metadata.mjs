@@ -64,15 +64,23 @@ export default [
 	},
 	{
 		id: 'metadata.requirements',
-		title: 'Tested up to, Requires at least and Requires PHP are set and agree between header and readme',
-		run: ( { readme, header } ) =>
-			[
-				[ 'Tested up to', header.tested, readme.headers.tested ],
+		title: 'Requires at least and Requires PHP agree between header and readme; Tested up to is only in the readme',
+		run: ( { readme, header } ) => {
+			const problems = [
 				[ 'Requires at least', header.requires, readme.headers.requires ],
 				[ 'Requires PHP', header.requires_php, readme.headers.requires_php ],
 			]
 				.filter( ( [ , h, r ] ) => ! h || h !== r )
-				.map( ( [ field, h, r ] ) => `${ field }: plugin header "${ h ?? '' }", readme "${ r ?? '' }".` ),
+				.map( ( [ field, h, r ] ) => `${ field }: plugin header "${ h ?? '' }", readme "${ r ?? '' }".` );
+			if ( ! readme.headers.tested ) {
+				problems.push( 'Tested up to is missing from the readme.' );
+			}
+			// WordPress.org's upload scan rejects it in the header (plugin_header_tested_up_to_not_allowed).
+			if ( header.tested ) {
+				problems.push( `Tested up to "${ header.tested }" is in the plugin header; keep it only in the readme.` );
+			}
+			return problems;
+		},
 	},
 	{
 		id: 'metadata.text-domain',
