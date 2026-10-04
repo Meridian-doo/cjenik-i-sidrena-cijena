@@ -1,4 +1,4 @@
-# Cjenik i sidrena cijena
+# Meridian Digital Cjenik i Sidrena Cijena
 
 [![CI](https://github.com/Meridian-doo/cjenik-i-sidrena-cijena/actions/workflows/ci.yml/badge.svg)](https://github.com/Meridian-doo/cjenik-i-sidrena-cijena/actions/workflows/ci.yml)
 [![License: GPL v2 or later](https://img.shields.io/badge/license-GPL--2.0--or--later-blue.svg)](LICENSE)
@@ -7,7 +7,7 @@ A WooCommerce plugin that helps Croatian shops publish the daily price list (*cj
 
 From 1 October 2026, Croatian traders who sell online must publish a machine-readable price list every day by 08:00 and keep each file online for 30 days (NN 101/2026). This plugin does that every morning without any daily work, keeps a public archive of every file, and adds both prices to product pages.
 
-The WordPress.org listing, with the full feature list and FAQ, is [`cjenik-i-sidrena-cijena/readme.txt`](cjenik-i-sidrena-cijena/readme.txt).
+The WordPress.org listing, with the full feature list and FAQ, is [`meridian-digital-cjenik-i-sidrena-cijena/readme.txt`](meridian-digital-cjenik-i-sidrena-cijena/readme.txt).
 
 > This plugin helps you publish your price list and show the anchor price. No plugin can guarantee legal compliance; you remain responsible for your data and for checking the current rules.
 
@@ -21,15 +21,15 @@ The plugin has no runtime dependencies, needs no account and sends no data to ex
 
 ## Installation
 
-Install **Cjenik i sidrena cijena** from **Plugins → Add New** once it is listed on WordPress.org. To install from source, [build the zip](#building-a-release) and upload it under **Plugins → Add New → Upload Plugin**.
+Install **Meridian Digital Cjenik i Sidrena Cijena** from **Plugins → Add New** once it is listed on WordPress.org. To install from source, [build the zip](#building-a-release) and upload it under **Plugins → Add New → Upload Plugin**.
 
 ## Repository layout
 
 | Path | What it is |
 |---|---|
-| `cjenik-i-sidrena-cijena/` | The plugin. Its slug, main file and text domain are all `cjenik-i-sidrena-cijena`. |
-| `cjenik-i-sidrena-cijena/src/` | PHP classes, autoloaded from the `Cjenik\` namespace (PSR-4). |
-| `cjenik-i-sidrena-cijena/tests/` | PHPUnit tests, run against real WordPress and WooCommerce. |
+| `meridian-digital-cjenik-i-sidrena-cijena/` | The plugin. Its slug, main file and text domain are all `meridian-digital-cjenik-i-sidrena-cijena`. |
+| `meridian-digital-cjenik-i-sidrena-cijena/src/` | PHP classes, autoloaded from the `Cjenik\` namespace (PSR-4). |
+| `meridian-digital-cjenik-i-sidrena-cijena/tests/` | PHPUnit tests, run against real WordPress and WooCommerce. |
 | `dev/` | Scripts that seed the local site with a Croatian test shop. |
 | `release/` | Build, release check, screenshot and WordPress.org deploy scripts. |
 | `.wordpress-org/` | Icon, banners, screenshots and the Live Preview blueprint for the WordPress.org listing. |
@@ -107,7 +107,7 @@ The tests exercise the plugin through its two outside edges: publishing a price 
 ## Building a release
 
 ```sh
-npm run build           # dist/cjenik-i-sidrena-cijena.zip
+npm run build           # dist/meridian-digital-cjenik-i-sidrena-cijena.zip
 npm run release:check   # checks the zip against the WordPress.org listing rules
 ```
 
@@ -121,4 +121,4 @@ Bug reports and pull requests are welcome. See [CONTRIBUTING.md](CONTRIBUTING.md
 
 GPL-2.0-or-later. See [LICENSE](LICENSE).
 
-The admin screens bundle the Inter and IBM Plex Mono fonts under the SIL Open Font License 1.1 (`cjenik-i-sidrena-cijena/assets/fonts/`).
+The admin screens bundle the Inter and IBM Plex Mono fonts under the SIL Open Font License 1.1 (`meridian-digital-cjenik-i-sidrena-cijena/assets/fonts/`).

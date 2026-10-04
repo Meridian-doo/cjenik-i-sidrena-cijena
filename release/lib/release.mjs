@@ -7,10 +7,10 @@ import { parsePo, readPo } from './po.mjs';
 
 /**
  * Everything the release check looks at: the built zip (unpacked), plus the
- * listing files that live beside it in the repo (assets, Croatian readme PO,
- * asset text manifest).
+ * files that live beside it in the repo (assets, Croatian readme PO, asset
+ * text manifest, code translations).
  */
-export function loadRelease( zipPath, { assetsDir, readmePoPath, assetTextPath } ) {
+export function loadRelease( zipPath, { assetsDir, readmePoPath, assetTextPath, languagesDir } ) {
 	const dir = tempDir( 'cjenik-release' );
 	unzip( zipPath, dir );
 	const root = path.join( dir, SLUG );
@@ -19,7 +19,8 @@ export function loadRelease( zipPath, { assetsDir, readmePoPath, assetTextPath }
 
 	const mainPhp = read( `${ SLUG }.php` );
 	const readmeText = read( 'readme.txt' ) ?? '';
-	const po = ( rel ) => ( read( rel ) === null ? null : parsePo( read( rel ) ) );
+	const lang = ( file ) => ( fs.existsSync( path.join( languagesDir, file ) ) ? fs.readFileSync( path.join( languagesDir, file ) ) : null );
+	const po = ( file ) => ( lang( file ) === null ? null : parsePo( lang( file ).toString( 'utf8' ) ) );
 	return {
 		zipPath,
 		entries: zipEntries( zipPath ),
@@ -28,9 +29,9 @@ export function loadRelease( zipPath, { assetsDir, readmePoPath, assetTextPath }
 		header: parsePluginHeader( mainPhp ?? '' ),
 		readmeText,
 		readme: readmeText ? parseReadme( readmeText ) : { ...parseReadme( '' ), missing: true },
-		codePo: po( `languages/${ SLUG }-hr.po` ),
-		codePot: po( `languages/${ SLUG }.pot` ),
-		codeMo: read( `languages/${ SLUG }-hr.mo`, null ),
+		codePo: po( `${ SLUG }-hr.po` ),
+		codePot: po( `${ SLUG }.pot` ),
+		codeMo: lang( `${ SLUG }-hr.mo` ),
 		readmePo: fs.existsSync( readmePoPath ) ? readPo( readmePoPath ) : null,
 		assetText: readJson( assetTextPath ),
 		assetsDir,

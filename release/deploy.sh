@@ -11,7 +11,7 @@
 # --dry-run checks out anonymously and prints what would be committed.
 set -euo pipefail
 
-SLUG=cjenik-i-sidrena-cijena
+SLUG=meridian-digital-cjenik-i-sidrena-cijena
 SVN_URL=${SVN_URL:-"https://plugins.svn.wordpress.org/$SLUG"}
 ROOT=$(cd "$(dirname "$0")/.." && pwd)
 MODE=${1:-}

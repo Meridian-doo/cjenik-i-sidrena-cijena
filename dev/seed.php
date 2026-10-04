@@ -32,6 +32,8 @@ $already_seeded = (bool) get_posts(
 	)
 );
 
+install_translation();
+
 if ( $already_seeded && ! $force && ! $bulk ) {
 	WP_CLI::log( 'Already seeded. Use --force to reseed.' );
 	return;
@@ -51,6 +53,16 @@ if ( $bulk ) {
 }
 
 WP_CLI::success( 'Seeded. Shop: ' . home_url( '/shop/' ) . ' · Admin: ' . admin_url() . ' (admin / password)' );
+
+/**
+ * Copies the plugin's Croatian translation to where its WordPress.org language
+ * pack would go, since the plugin no longer bundles it.
+ */
+function install_translation(): void {
+	$domain = 'meridian-digital-cjenik-i-sidrena-cijena';
+	wp_mkdir_p( WP_LANG_DIR . '/plugins' );
+	copy( WP_PLUGIN_DIR . "/{$domain}/languages/{$domain}-hr.mo", WP_LANG_DIR . "/plugins/{$domain}-hr.mo" );
+}
 
 /**
  * Croatian store settings. Tax is configured so that prices are entered

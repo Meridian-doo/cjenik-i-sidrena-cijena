@@ -1,5 +1,5 @@
 {
-  "name": "cjenik-i-sidrena-cijena",
+  "name": "meridian-digital-cjenik-i-sidrena-cijena",
   "version": "1.0.0",
   "directories": {
     "doc": "docs"
@@ -13,12 +13,12 @@
     "env:theme-colors": "wp-env run cli wp eval-file cjenik-dev/botiga-colors.php",
     "env:destroy": "wp-env destroy",
     "wp": "wp-env run cli wp",
-    "test:php": "wp-env run cli --env-cwd=wp-content/plugins/cjenik-i-sidrena-cijena bash bin/test.sh",
-    "test:php:slow": "wp-env run cli --env-cwd=wp-content/plugins/cjenik-i-sidrena-cijena bash bin/test.sh --group slow",
-    "lint:php": "wp-env run cli --env-cwd=wp-content/plugins/cjenik-i-sidrena-cijena vendor/bin/phpcs",
-    "lint:php:fix": "wp-env run cli --env-cwd=wp-content/plugins/cjenik-i-sidrena-cijena vendor/bin/phpcbf",
-    "typecheck": "wp-env run cli --env-cwd=wp-content/plugins/cjenik-i-sidrena-cijena bash bin/typecheck.sh",
-    "composer": "wp-env run cli --env-cwd=wp-content/plugins/cjenik-i-sidrena-cijena composer",
+    "test:php": "wp-env run cli --env-cwd=wp-content/plugins/meridian-digital-cjenik-i-sidrena-cijena bash bin/test.sh",
+    "test:php:slow": "wp-env run cli --env-cwd=wp-content/plugins/meridian-digital-cjenik-i-sidrena-cijena bash bin/test.sh --group slow",
+    "lint:php": "wp-env run cli --env-cwd=wp-content/plugins/meridian-digital-cjenik-i-sidrena-cijena vendor/bin/phpcs",
+    "lint:php:fix": "wp-env run cli --env-cwd=wp-content/plugins/meridian-digital-cjenik-i-sidrena-cijena vendor/bin/phpcbf",
+    "typecheck": "wp-env run cli --env-cwd=wp-content/plugins/meridian-digital-cjenik-i-sidrena-cijena bash bin/typecheck.sh",
+    "composer": "wp-env run cli --env-cwd=wp-content/plugins/meridian-digital-cjenik-i-sidrena-cijena composer",
     "build": "node release/build.mjs",
     "release:check": "node release/check.mjs",
     "release:check:static": "node release/check.mjs --static",

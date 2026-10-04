@@ -24,7 +24,7 @@ const po = ( file, change ) => {
 /** Fixtures checked against the zip and the listing files (stages 1–5). */
 export const STATIC_FIXTURES = [
 	{ rule: 'artifact.forbidden-files', name: 'a .sh script in the zip', mutate: ( ws ) => fs.writeFileSync( path.join( ws.plugin, 'build.sh' ), '#!/bin/sh\n' ) },
-	{ rule: 'artifact.size', name: 'an 11 MB zip', mutate: ( ws ) => fs.writeFileSync( path.join( ws.plugin, 'languages', 'padding.dat' ), crypto.randomBytes( 11 * 1024 * 1024 ) ) },
+	{ rule: 'artifact.size', name: 'an 11 MB zip', mutate: ( ws ) => fs.writeFileSync( path.join( ws.plugin, 'padding.dat' ), crypto.randomBytes( 11 * 1024 * 1024 ) ) },
 	{ rule: 'artifact.top-folder', name: 'the old folder name', mutate: ( ws ) => ( ws.topFolder = 'cjenik-sidrena-cijena' ) },
 	{ rule: 'artifact.main-file', name: 'the main file named plugin.php', mutate: ( ws ) => fs.renameSync( path.join( ws.plugin, `${ SLUG }.php` ), path.join( ws.plugin, 'plugin.php' ) ) },
 	{ rule: 'metadata.readme-parses', name: 'a readme name that differs from the header', mutate: ( ws ) => readme( ws, ( s ) => s.replace( /^=== .+ ===/, '=== Cjenik ===' ) ) },
@@ -50,6 +50,15 @@ export const STATIC_FIXTURES = [
 	{ rule: 'metadata.requirements', name: 'a readme Requires PHP that disagrees with the header', mutate: ( ws ) => readme( ws, ( s ) => s.replace( /^Requires PHP: .+$/m, 'Requires PHP: 7.4' ) ) },
 	{ rule: 'metadata.requirements', name: 'a Tested up to line in the plugin header', mutate: ( ws ) => main( ws, ( s ) => s.replace( /^( \* Requires PHP:.*\n)/m, ' * Tested up to:      7.1\n$1' ) ) },
 	{ rule: 'metadata.text-domain', name: 'the old text domain in the header', mutate: ( ws ) => main( ws, ( s ) => s.replace( /Text Domain:(\s*).+/, 'Text Domain:$1cjenik-sidrena-cijena' ) ) },
+	{ rule: 'metadata.text-domain', name: 'a Domain Path header', mutate: ( ws ) => main( ws, ( s ) => s.replace( /( \* Text Domain:.+\n)/, '$1 * Domain Path:       /languages\n' ) ) },
+	{
+		rule: 'metadata.text-domain',
+		name: 'a bundled Croatian .mo',
+		mutate: ( ws ) => {
+			fs.mkdirSync( path.join( ws.plugin, 'languages' ) );
+			fs.copyFileSync( path.join( ws.languagesDir, `${ SLUG }-hr.mo` ), path.join( ws.plugin, 'languages', `${ SLUG }-hr.mo` ) );
+		},
+	},
 	{
 		rule: 'metadata.changelog',
 		name: 'three versions in the readme changelog',
@@ -69,7 +78,7 @@ export const STATIC_FIXTURES = [
 	{
 		rule: 'translation.code-po-complete',
 		name: 'an untranslated code string',
-		mutate: ( ws ) => edit( path.join( ws.plugin, 'languages', `${ SLUG }-hr.po` ), ( s ) => s.replace( /msgid "Anchor prices"\nmsgstr ".+"/, 'msgid "Anchor prices"\nmsgstr ""' ) ),
+		mutate: ( ws ) => edit( path.join( ws.languagesDir, `${ SLUG }-hr.po` ), ( s ) => s.replace( /msgid "Anchor prices"\nmsgstr ".+"/, 'msgid "Anchor prices"\nmsgstr ""' ) ),
 	},
 	{ rule: 'assets.names', name: 'an uppercase asset name', mutate: ( ws ) => fs.renameSync( path.join( ws.assetsDir, 'screenshot-1.png' ), path.join( ws.assetsDir, 'Screenshot-1.png' ) ) },
 	{ rule: 'assets.icon', name: 'a missing 256×256 icon', mutate: ( ws ) => fs.rmSync( path.join( ws.assetsDir, 'icon-256x256.png' ) ) },

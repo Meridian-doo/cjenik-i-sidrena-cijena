@@ -1,9 +1,9 @@
 {
 	"$schema": "https://playground.wordpress.net/blueprint-schema.json",
 	"meta": {
-		"title": "Cjenik i sidrena cijena demo shop",
+		"title": "Meridian Digital Cjenik i Sidrena Cijena demo shop",
 		"description": "WooCommerce with a few products, a sale, an anchor price and one published price list.",
-		"author": "Meridian d.o.o."
+		"author": "Meridian, obrt za računalno programiranje"
 	},
 	"landingPage": "/wp-admin/admin.php?page=cjenik",
 	"preferredVersions": {
@@ -29,7 +29,7 @@
 			"step": "installPlugin",
 			"pluginData": {
 				"resource": "wordpress.org/plugins",
-				"slug": "cjenik-i-sidrena-cijena"
+				"slug": "meridian-digital-cjenik-i-sidrena-cijena"
 			},
 			"options": {
 				"activate": true

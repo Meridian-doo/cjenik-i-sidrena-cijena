@@ -5,12 +5,15 @@ import path from 'node:path';
 export const ROOT = path.resolve( path.dirname( fileURLToPath( import.meta.url ) ), '..' );
 
 /** WordPress.org slug = folder = main file = text domain. */
-export const SLUG = 'cjenik-i-sidrena-cijena';
+export const SLUG = 'meridian-digital-cjenik-i-sidrena-cijena';
 export const VERSION_CONSTANT = 'CJENIK_VERSION';
 
 export const PLUGIN_DIR = path.join( ROOT, SLUG );
 export const DIST_DIR = path.join( ROOT, 'dist' );
 export const ZIP_PATH = path.join( DIST_DIR, `${ SLUG }.zip` );
+
+/** The POT and Croatian PO/MO. Kept in the repo for translate.wordpress.org and the tests; never shipped in the zip. */
+export const LANGUAGES_DIR = path.join( PLUGIN_DIR, 'languages' );
 
 /** Mirrors SVN `assets/` one-to-one. Never shipped in the zip. */
 export const ASSETS_DIR = path.join( ROOT, '.wordpress-org' );

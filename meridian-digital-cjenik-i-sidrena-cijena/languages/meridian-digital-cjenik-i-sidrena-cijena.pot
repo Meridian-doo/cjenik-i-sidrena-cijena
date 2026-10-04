@@ -1,0 +1,1042 @@
+# Copyright (C) 2026 Meridian, obrt za računalno programiranje
+# This file is distributed under the GPL-2.0-or-later.
+msgid ""
+msgstr ""
+"Project-Id-Version: Meridian Digital Cjenik i Sidrena Cijena 0.1.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/meridian-digital-cjenik-i-sidrena-cijena\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2026-10-04T13:29:36+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.12.0\n"
+"X-Domain: meridian-digital-cjenik-i-sidrena-cijena\n"
+
+#. Plugin Name of the plugin
+#: meridian-digital-cjenik-i-sidrena-cijena.php
+msgid "Meridian Digital Cjenik i Sidrena Cijena"
+msgstr ""
+
+#. Plugin URI of the plugin
+#: meridian-digital-cjenik-i-sidrena-cijena.php
+msgid "https://github.com/Meridian-doo/cjenik-i-sidrena-cijena"
+msgstr ""
+
+#. Description of the plugin
+#: meridian-digital-cjenik-i-sidrena-cijena.php
+msgid "Helps Croatian WooCommerce shops publish the daily price list (cjenik) and show the anchor price and the lowest 30-day price."
+msgstr ""
+
+#. Author of the plugin
+#: meridian-digital-cjenik-i-sidrena-cijena.php
+msgid "Meridian, obrt za računalno programiranje"
+msgstr ""
+
+#. Author URI of the plugin
+#: meridian-digital-cjenik-i-sidrena-cijena.php
+msgid "https://meridian-digital.com"
+msgstr ""
+
+#: src/Admin/AdminPages.php:39
+msgid "Price list"
+msgstr ""
+
+#: src/Admin/AdminPages.php:40
+msgid "Price list (cjenik)"
+msgstr ""
+
+#: src/Admin/AdminPages.php:75
+#: src/Admin/AdminPages.php:100
+msgid "Settings"
+msgstr ""
+
+#: src/Admin/AdminPages.php:82
+msgid "Deleting this plugin will also delete the price history, anchors, publication log and published price lists."
+msgstr ""
+
+#: src/Admin/AdminPages.php:83
+msgid "Deleting this plugin keeps the price history, anchors, publication log and published price lists."
+msgstr ""
+
+#: src/Admin/AdminPages.php:89
+msgid "Change"
+msgstr ""
+
+#: src/Admin/AdminPages.php:99
+#: src/Admin/LogPage.php:120
+msgid "Status"
+msgstr ""
+
+#: src/Admin/AdminPages.php:101
+msgid "Anchor prices"
+msgstr ""
+
+#: src/Admin/AdminPages.php:102
+#: src/Admin/LogPage.php:86
+msgid "Publication log"
+msgstr ""
+
+#: src/Admin/AdminPages.php:106
+msgid "Price list and anchor price"
+msgstr ""
+
+#: src/Admin/AdminPages.php:129
+msgid "Today's price list"
+msgstr ""
+
+#. translators: 1: time, 2: number of rows
+#: src/Admin/AdminPages.php:133
+#, php-format
+msgid "Published at %1$s with %2$d rows."
+msgstr ""
+
+#: src/Admin/AdminPages.php:137
+msgid "Not published yet today."
+msgstr ""
+
+#: src/Admin/AdminPages.php:140
+msgid "Needs attention"
+msgstr ""
+
+#: src/Admin/AdminPages.php:142
+msgid "Next scheduled run"
+msgstr ""
+
+#: src/Admin/AdminPages.php:143
+msgid "Latest file, always"
+msgstr ""
+
+#: src/Admin/AdminPages.php:145
+msgid "Archive page"
+msgstr ""
+
+#: src/Admin/AdminPages.php:145
+msgid "None. Put the [cjenik_arhiva] shortcode on a published page."
+msgstr ""
+
+#: src/Admin/AdminPages.php:147
+msgid "Archive index (JSON)"
+msgstr ""
+
+#: src/Admin/AdminPages.php:153
+#: src/Admin/LogPage.php:188
+#: src/Admin/LogPage.php:228
+#: src/Admin/SetupWizard.php:110
+msgid "Publish now"
+msgstr ""
+
+#: src/Admin/AdminPages.php:155
+msgid "Check public access"
+msgstr ""
+
+#: src/Admin/AdminPages.php:160
+msgid "Public access check"
+msgstr ""
+
+#. translators: %s: date and time
+#: src/Admin/AdminPages.php:164
+#, php-format
+msgid "Last checked %s, as an anonymous visitor."
+msgstr ""
+
+#: src/Admin/AdminPages.php:175
+msgid "Everything could be fetched without a login, redirect or bot challenge."
+msgstr ""
+
+#: src/Admin/AdminPages.php:179
+msgid "Publishing without site traffic"
+msgstr ""
+
+#: src/Admin/AdminPages.php:180
+msgid "WordPress runs scheduled tasks only when someone visits the site. To publish on time on a quiet site, ask your host to add one of these system cron jobs:"
+msgstr ""
+
+#: src/Admin/AdminPages.php:195
+msgid "The price list is published."
+msgstr ""
+
+#: src/Admin/AdminPages.php:201
+msgid "Public access checked."
+msgstr ""
+
+#: src/Admin/AdminPages.php:219
+msgid "Settings saved."
+msgstr ""
+
+#: src/Admin/AdminPages.php:237
+msgid "Your site timezone is a fixed UTC offset, not a city, so it doesn't follow summer time. That's fine: the plugin always uses Europe/Zagreb time for the 08:00 deadline and the file name. You can set the site timezone to \"Zagreb\" under Settings → General."
+msgstr ""
+
+#: src/Admin/AdminPages.php:246
+msgid "None"
+msgstr ""
+
+#. translators: %s: taxonomy name
+#: src/Admin/AdminPages.php:252
+#, php-format
+msgid "Taxonomy: %s"
+msgstr ""
+
+#. translators: %s: attribute name
+#: src/Admin/AdminPages.php:256
+#, php-format
+msgid "Attribute: %s"
+msgstr ""
+
+#: src/Admin/AdminPages.php:290
+msgid "left out, no price"
+msgstr ""
+
+#: src/Admin/AdminPages.php:291
+msgid "no anchor, today's regular price used"
+msgstr ""
+
+#: src/Admin/AdminPages.php:292
+msgid "anchor not confirmed"
+msgstr ""
+
+#: src/Admin/AdminPages.php:293
+msgid "no barcode"
+msgstr ""
+
+#: src/Admin/AdminPages.php:294
+msgid "no SKU, product ID used"
+msgstr ""
+
+#. translators: 1: number of items, 2: what is wrong
+#: src/Admin/AdminPages.php:299
+#, php-format
+msgid "%1$d item: %2$s"
+msgid_plural "%1$d items: %2$s"
+msgstr[0] ""
+msgstr[1] ""
+
+#: src/Admin/AdminPages.php:302
+msgid "Fix anchors"
+msgstr ""
+
+#: src/Admin/AdminPages.php:335
+msgid "The file could not be uploaded."
+msgstr ""
+
+#. translators: %d: number of rows
+#: src/Admin/AdminPages.php:343
+#, php-format
+msgid "Imported %d row."
+msgid_plural "Imported %d rows."
+msgstr[0] ""
+msgstr[1] ""
+
+#. translators: 1: line number, 2: error
+#: src/Admin/AdminPages.php:348
+#, php-format
+msgid "Line %1$d: %2$s"
+msgstr ""
+
+#: src/Admin/AdminPages.php:355
+msgid "You are not allowed to do this."
+msgstr ""
+
+#: src/Admin/AdminPages.php:384
+msgid "Dismiss"
+msgstr ""
+
+#: src/Admin/AnchorsPage.php:18
+msgid "Import anchor prices"
+msgstr ""
+
+#: src/Admin/AnchorsPage.php:19
+msgid "CSV with a \"šifra\" (SKU) or \"barkod\" column, a \"sidrena cijena\" column (incl. VAT) and optionally \"sidreni datum\". A HOK template with a \"Cijena 10.9.2026.\" column works too."
+msgstr ""
+
+#: src/Admin/AnchorsPage.php:23
+msgid "Import past prices"
+msgstr ""
+
+#: src/Admin/AnchorsPage.php:24
+msgid "CSV with \"šifra\" or \"barkod\", \"cijena\" (incl. VAT), \"od\" (from) and optionally \"redovna cijena\" and \"do\" (until). Use it to fill the 30 days before you installed the plugin. Recorded history is never overwritten."
+msgstr ""
+
+#: src/Admin/AnchorsPage.php:34
+msgid "Items without a confirmed anchor"
+msgstr ""
+
+#. translators: %d: number of items
+#. translators: %d: number of items in the price list
+#: src/Admin/AnchorsPage.php:37
+#: src/Archive/Archive.php:200
+#, php-format
+msgid "%d item"
+msgid_plural "%d items"
+msgstr[0] ""
+msgstr[1] ""
+
+#: src/Admin/AnchorsPage.php:39
+msgid "The anchor is the regular price on 10 Sep 2026 (or 2 May 2025 for the FMCG categories you chose), or the first price of products listed later. The plugin knows it only from its own price history. For these items, enter it on the product screen or import it below."
+msgstr ""
+
+#: src/Admin/AnchorsPage.php:42
+msgid "Every item has a confirmed anchor."
+msgstr ""
+
+#: src/Admin/AnchorsPage.php:47
+msgid "Product"
+msgstr ""
+
+#: src/Admin/AnchorsPage.php:48
+msgid "SKU"
+msgstr ""
+
+#: src/Admin/AnchorsPage.php:49
+msgid "Published now as"
+msgstr ""
+
+#: src/Admin/AnchorsPage.php:62
+msgid "current regular price, today's date"
+msgstr ""
+
+#: src/Admin/AnchorsPage.php:88
+msgid "Drop a CSV here or choose a file"
+msgstr ""
+
+#. translators: %s: largest upload size, e.g. 10 MB
+#: src/Admin/AnchorsPage.php:91
+#, php-format
+msgid "CSV, up to %s."
+msgstr ""
+
+#: src/Admin/AnchorsPage.php:97
+msgid "Remove"
+msgstr ""
+
+#: src/Admin/AnchorsPage.php:99
+msgid "Import"
+msgstr ""
+
+#: src/Admin/LogPage.php:39
+msgid "Every price list published, with its SHA-256 fingerprint. The log is kept after the files are removed."
+msgstr ""
+
+#: src/Admin/LogPage.php:50
+msgid "No publications match these filters."
+msgstr ""
+
+#: src/Admin/LogPage.php:52
+msgid "Clear filters"
+msgstr ""
+
+#: src/Admin/LogPage.php:76
+msgid "All publications"
+msgstr ""
+
+#: src/Admin/LogPage.php:77
+msgid "Last 7 days"
+msgstr ""
+
+#: src/Admin/LogPage.php:78
+msgid "Last 30 days"
+msgstr ""
+
+#: src/Admin/LogPage.php:95
+#: src/Admin/LogPage.php:97
+msgid "Search files"
+msgstr ""
+
+#: src/Admin/LogPage.php:99
+msgid "Period"
+msgstr ""
+
+#: src/Admin/LogPage.php:103
+msgid "Filter"
+msgstr ""
+
+#: src/Admin/LogPage.php:111
+msgid "Date"
+msgstr ""
+
+#: src/Admin/LogPage.php:113
+#: src/Admin/SettingsPage.php:22
+msgid "Outlet"
+msgstr ""
+
+#: src/Admin/LogPage.php:117
+#: src/Archive/Archive.php:236
+msgid "File"
+msgstr ""
+
+#: src/Admin/LogPage.php:118
+msgid "Rows"
+msgstr ""
+
+#: src/Admin/LogPage.php:126
+msgid "Action"
+msgstr ""
+
+#: src/Admin/LogPage.php:171
+msgid "Failed"
+msgstr ""
+
+#: src/Admin/LogPage.php:173
+msgid "Removed"
+msgstr ""
+
+#: src/Admin/LogPage.php:175
+msgid "With warnings"
+msgstr ""
+
+#: src/Admin/LogPage.php:177
+#: src/Archive/Archive.php:233
+msgid "Published"
+msgstr ""
+
+#: src/Admin/LogPage.php:185
+msgid "Download"
+msgstr ""
+
+#. translators: 1: first row shown, 2: last row shown, 3: number of rows
+#: src/Admin/LogPage.php:202
+#, php-format
+msgid "%1$s–%2$s of %3$s"
+msgstr ""
+
+#: src/Admin/LogPage.php:203
+msgid "Pages"
+msgstr ""
+
+#: src/Admin/LogPage.php:205
+msgid "Previous page"
+msgstr ""
+
+#: src/Admin/LogPage.php:206
+msgid "Next page"
+msgstr ""
+
+#: src/Admin/LogPage.php:220
+msgid "No price list published yet"
+msgstr ""
+
+#. translators: %s: time of day, e.g. 05:00
+#: src/Admin/LogPage.php:224
+#, php-format
+msgid "The price list is published every day at %s. You can also publish it now."
+msgstr ""
+
+#: src/Admin/Notices.php:49
+msgid "Price list:"
+msgstr ""
+
+#: src/Admin/Notices.php:52
+msgid "See status"
+msgstr ""
+
+#: src/Admin/Notices.php:54
+msgid "Dismiss for today"
+msgstr ""
+
+#: src/Admin/ProductFields.php:42
+msgid "Special sale name"
+msgstr ""
+
+#: src/Admin/ProductFields.php:46
+msgid "Shown in the price list while this product is on sale, e.g. \"Akcija\" or \"Rasprodaja\". Leave empty for the shop default."
+msgstr ""
+
+#: src/Admin/ProductFields.php:105
+msgid "Anchor price incl. VAT"
+msgstr ""
+
+#: src/Admin/ProductFields.php:116
+msgid "Anchor date"
+msgstr ""
+
+#: src/Admin/ProductFields.php:131
+msgid "Unit of measure"
+msgstr ""
+
+#: src/Admin/ProductFields.php:133
+msgid "(none)"
+msgstr ""
+
+#: src/Admin/ProductFields.php:141
+msgid "Net quantity in that unit"
+msgstr ""
+
+#: src/Admin/ProductFields.php:145
+msgid "E.g. 0,25 for 250 g sold by the kg. The unit price is the retail price divided by this."
+msgstr ""
+
+#: src/Admin/ProductFields.php:153
+msgid "No anchor yet. It is set from the price history once the product is published, or enter it here."
+msgstr ""
+
+#. translators: %s: date
+#: src/Admin/ProductFields.php:159
+#, php-format
+msgid "Entered by hand, for %s. Clear both fields to use the price history."
+msgstr ""
+
+#. translators: %s: date
+#: src/Admin/ProductFields.php:162
+#, php-format
+msgid "Imported from CSV, for %s. Clear both fields to use the price history."
+msgstr ""
+
+#. translators: %s: date
+#: src/Admin/ProductFields.php:166
+#, php-format
+msgid "Not confirmed: the price history starts on %s, after the reference date. Enter or import the correct anchor."
+msgstr ""
+
+#. translators: %s: date
+#: src/Admin/ProductFields.php:169
+#, php-format
+msgid "Automatic, from the price history on %s."
+msgstr ""
+
+#: src/Admin/ProductFields.php:186
+msgid "The anchor needs both a price and a date. It was not saved."
+msgstr ""
+
+#: src/Admin/SettingsPage.php:24
+#: src/Admin/SetupWizard.php:80
+msgid "Outlet type"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:24
+msgid "First part of the file name, e.g. \"webshop\"."
+msgstr ""
+
+#: src/Admin/SettingsPage.php:25
+#: src/Admin/SetupWizard.php:81
+msgid "Outlet address"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:25
+msgid "Second part of the file name. For an online-only shop, the store address from the WooCommerce settings is used by default."
+msgstr ""
+
+#: src/Admin/SettingsPage.php:26
+#: src/Admin/SetupWizard.php:82
+msgid "Outlet code"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:26
+msgid "Third part of the file name, e.g. \"P-01\"."
+msgstr ""
+
+#: src/Admin/SettingsPage.php:29
+msgid "Publication"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:30
+msgid "Publish daily at"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:30
+msgid "Europe/Zagreb time, every day including weekends and holidays. The list must be online by 08:00."
+msgstr ""
+
+#: src/Admin/SettingsPage.php:33
+msgid "Time in the file name"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:37
+msgid "05:00 (as in the Ministry example; not allowed in Windows file names)"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:40
+msgid "Keep files for (days)"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:40
+msgid "At least 31. The newest file is never deleted."
+msgstr ""
+
+#: src/Admin/SettingsPage.php:43
+msgid "Format"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:52
+msgid "CSV separator"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:55
+msgid "Semicolon (;)"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:56
+msgid "Comma (,)"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:61
+msgid "CSV decimal separator"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:70
+msgid "CSV line endings"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:77
+msgid "CSV byte order mark"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:77
+msgid "Add a UTF-8 BOM. Helps old Excel versions, can confuse simple readers."
+msgstr ""
+
+#: src/Admin/SettingsPage.php:78
+msgid "Archive index"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:78
+msgid "Publish a JSON list of archived files for price aggregators."
+msgstr ""
+
+#: src/Admin/SettingsPage.php:81
+msgid "Columns"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:81
+msgid "Required columns can be renamed and reordered but not removed. Lower numbers come first."
+msgstr ""
+
+#: src/Admin/SettingsPage.php:85
+msgid "Where the data comes from"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:86
+msgid "Brand (marka)"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:87
+msgid "Barcode (barkod)"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:87
+#: src/Admin/SetupWizard.php:89
+msgid "\"gtin\" for the WooCommerce GTIN, UPC, EAN or ISBN field, or \"meta:\" and the meta key of your EAN plugin, e.g. \"meta:_ean\"."
+msgstr ""
+
+#: src/Admin/SettingsPage.php:90
+#: src/Admin/SetupWizard.php:92
+msgid "Unit price"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:93
+#: src/Admin/SetupWizard.php:95
+msgid "Not used"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:94
+#: src/Admin/SetupWizard.php:96
+msgid "Unit and net quantity fields on each product"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:95
+msgid "Meta keys from another plugin"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:98
+msgid "Unit meta key"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:99
+msgid "Unit price meta key"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:99
+msgid "The value must include VAT."
+msgstr ""
+
+#: src/Admin/SettingsPage.php:102
+msgid "Products on backorder"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:105
+msgid "Unavailable (nedostupno)"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:106
+msgid "Available (dostupno)"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:109
+msgid "Default special sale name"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:109
+msgid "Used for products on sale without their own sale name."
+msgstr ""
+
+#: src/Admin/SettingsPage.php:113
+msgid "Shop display"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:114
+msgid "Show next to the price"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:114
+msgid "Show the anchor price, and during a sale the lowest price in the last 30 days, next to the product price."
+msgstr ""
+
+#: src/Admin/SettingsPage.php:115
+msgid "Anchor price label"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:115
+msgid "{datum} is replaced by the anchor date, e.g. 10.9.2026."
+msgstr ""
+
+#: src/Admin/SettingsPage.php:116
+msgid "Lowest 30-day price label"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:119
+msgid "Alerts"
+msgstr ""
+
+#. translators: %s: email address
+#: src/Admin/SettingsPage.php:122
+#, php-format
+msgid "When publishing fails, or today's list is still missing at the check time. Sent to %s."
+msgstr ""
+
+#: src/Admin/SettingsPage.php:125
+msgid "Email the site admin"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:126
+msgid "Check time"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:126
+msgid "Europe/Zagreb time."
+msgstr ""
+
+#: src/Admin/SettingsPage.php:130
+msgid "When the plugin is deleted"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:133
+msgid "Data"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:136
+msgid "Keep the price history, anchors, publication log and files (recommended)"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:137
+msgid "Delete everything"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:145
+msgid "Save settings"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:147
+msgid "Cancel"
+msgstr ""
+
+#. translators: %s: URL
+#: src/Admin/SettingsPage.php:154
+#, php-format
+msgid "Need several outlets, a service price list, monitoring from outside your site or an evidence pack for inspections? <a href=\"%s\">Cjenik Pro</a> adds them."
+msgstr ""
+
+#: src/Admin/SettingsPage.php:259
+msgid "Include"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:260
+msgid "Order"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:261
+msgid "Header"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:294
+msgid "Only if you already showed an anchor price for food, drink, cosmetics, cleaning, toiletry or household products under the 2025 decision. Subcategories are included."
+msgstr ""
+
+#: src/Admin/SettingsPage.php:295
+msgid "Categories that keep the 2 May 2025 anchor"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:304
+msgid "No product categories."
+msgstr ""
+
+#: src/Admin/SetupWizard.php:26
+msgid "Price list setup"
+msgstr ""
+
+#: src/Admin/SetupWizard.php:56
+msgid "Your webshop"
+msgstr ""
+
+#: src/Admin/SetupWizard.php:57
+msgid "Your product data"
+msgstr ""
+
+#: src/Admin/SetupWizard.php:58
+msgid "First price list"
+msgstr ""
+
+#: src/Admin/SetupWizard.php:59
+msgid "Done"
+msgstr ""
+
+#: src/Admin/SetupWizard.php:62
+msgid "Set up the price list"
+msgstr ""
+
+#. translators: 1: step number, 2: step title
+#: src/Admin/SetupWizard.php:64
+#, php-format
+msgid "Step %1$d of 4: %2$s"
+msgstr ""
+
+#: src/Admin/SetupWizard.php:77
+msgid "The price list file name must name the outlet it belongs to. For a webshop these defaults are usually right."
+msgstr ""
+
+#. translators: %s: example file name
+#: src/Admin/SetupWizard.php:85
+#, php-format
+msgid "The file will be named like: %s"
+msgstr ""
+
+#: src/Admin/SetupWizard.php:88
+msgid "Brand comes from"
+msgstr ""
+
+#: src/Admin/SetupWizard.php:89
+msgid "Barcode comes from"
+msgstr ""
+
+#: src/Admin/SetupWizard.php:97
+msgid "Meta keys from another plugin (set them in Settings)"
+msgstr ""
+
+#. translators: %s: time, e.g. 05:00
+#: src/Admin/SetupWizard.php:103
+#, php-format
+msgid "The price list will be published every day at %s Croatian time. Publish the first one now and check it."
+msgstr ""
+
+#: src/Admin/SetupWizard.php:108
+msgid "Back"
+msgstr ""
+
+#: src/Admin/SetupWizard.php:110
+msgid "Continue"
+msgstr ""
+
+#: src/Admin/SetupWizard.php:111
+msgid "Skip the setup"
+msgstr ""
+
+#. translators: %s: error message
+#: src/Admin/SetupWizard.php:146
+#, php-format
+msgid "Publishing failed: %s"
+msgstr ""
+
+#. translators: 1: file name, 2: number of rows
+#: src/Admin/SetupWizard.php:151
+#, php-format
+msgid "Published %1$s with %2$d rows."
+msgstr ""
+
+#: src/Admin/SetupWizard.php:154
+msgid "Latest file, always:"
+msgstr ""
+
+#: src/Admin/SetupWizard.php:156
+msgid "Archive page:"
+msgstr ""
+
+#: src/Admin/SetupWizard.php:160
+msgid "Link the archive page from your site footer, next to your terms, so inspectors and price comparison sites find it."
+msgstr ""
+
+#: src/Admin/SetupWizard.php:161
+msgid "Check the anchor prices"
+msgstr ""
+
+#: src/Admin/SetupWizard.php:161
+msgid "Go to the status page"
+msgstr ""
+
+#. translators: %s: site name
+#: src/Alerts.php:36
+#, php-format
+msgid "[%s] The price list could not be published"
+msgstr ""
+
+#. translators: %s: error message
+#: src/Alerts.php:38
+#, php-format
+msgid "Publishing the price list failed: %s"
+msgstr ""
+
+#: src/Alerts.php:39
+msgid "The plugin will keep trying every 15 minutes."
+msgstr ""
+
+#. translators: %s: site name
+#: src/Alerts.php:56
+#, php-format
+msgid "[%s] Today's price list is missing"
+msgstr ""
+
+#: src/Alerts.php:57
+msgid "No price list has been published today yet. It must be online by 08:00."
+msgstr ""
+
+#: src/Alerts.php:76
+msgid "Status and publication log:"
+msgstr ""
+
+#: src/Archive/Archive.php:79
+msgid "Price list archive"
+msgstr ""
+
+#: src/Archive/Archive.php:178
+msgid "No price list has been published yet."
+msgstr ""
+
+#. translators: 1: date, 2: time
+#: src/Archive/Archive.php:194
+#, php-format
+msgid "Published on %1$s at %2$s"
+msgstr ""
+
+#: src/Archive/Archive.php:204
+msgid "Permanent link to the newest file:"
+msgstr ""
+
+#: src/Archive/Archive.php:209
+msgid "Machine-readable index (JSON)"
+msgstr ""
+
+#: src/Archive/Archive.php:213
+msgid "Latest price list"
+msgstr ""
+
+#. translators: %s: file format, e.g. CSV
+#: src/Archive/Archive.php:219
+#, php-format
+msgid "Download (%s)"
+msgstr ""
+
+#: src/Archive/Archive.php:229
+msgid "Storage number"
+msgstr ""
+
+#: src/Archive/Archive.php:230
+msgid "Items"
+msgstr ""
+
+#: src/Archive/Archive.php:231
+msgid "All published price lists"
+msgstr ""
+
+#. translators: %d: number of days
+#: src/Archive/Archive.php:251
+#, php-format
+msgid "Each file stays available for at least %d day after it is published."
+msgid_plural "Each file stays available for at least %d days after it is published."
+msgstr[0] ""
+msgstr[1] ""
+
+#: src/Import/CsvImporter.php:45
+msgid "No anchor price column (\"sidrena cijena\") found."
+msgstr ""
+
+#: src/Import/CsvImporter.php:52
+#: src/Import/CsvImporter.php:91
+msgid "No product with this SKU or barcode."
+msgstr ""
+
+#: src/Import/CsvImporter.php:59
+msgid "The anchor price is missing or not a number."
+msgstr ""
+
+#: src/Import/CsvImporter.php:81
+msgid "The file needs a price (\"cijena\") and a start (\"od\") column."
+msgstr ""
+
+#: src/Import/CsvImporter.php:95
+msgid "The price or the start date is missing or invalid."
+msgstr ""
+
+#: src/Import/CsvImporter.php:110
+msgid "This period is already covered by the recorded history."
+msgstr ""
+
+#: src/Publishing/Publisher.php:46
+msgid "Another publication for this outlet is still running."
+msgstr ""
+
+#. translators: %s: file name
+#: src/Publishing/Publisher.php:72
+#, php-format
+msgid "Cannot move the file into place as %s."
+msgstr ""
+
+#: src/SelfCheck.php:70
+msgid "There is no public archive page. Add the [cjenik_arhiva] shortcode to a published page."
+msgstr ""
+
+#. translators: %s: URL
+#: src/SelfCheck.php:79
+#, php-format
+msgid "robots.txt blocks crawlers from %s."
+msgstr ""
+
+#. translators: 1: URL, 2: error message
+#: src/SelfCheck.php:116
+#, php-format
+msgid "%1$s could not be fetched: %2$s"
+msgstr ""
+
+#. translators: %s: URL
+#: src/SelfCheck.php:123
+#, php-format
+msgid "%s redirects anonymous visitors to a login page."
+msgstr ""
+
+#. translators: 1: URL, 2: redirect target
+#: src/SelfCheck.php:126
+#, php-format
+msgid "%1$s redirects to %2$s. Crawlers may not follow it."
+msgstr ""
+
+#. translators: %s: URL
+#: src/SelfCheck.php:133
+#, php-format
+msgid "%s shows a bot challenge or captcha instead of the content."
+msgstr ""
+
+#. translators: 1: URL, 2: HTTP status code
+#: src/SelfCheck.php:138
+#, php-format
+msgid "%1$s answers with HTTP status %2$d instead of 200."
+msgstr ""
+
+#. translators: %s: error message
+#: src/Status.php:40
+#, php-format
+msgid "The last publication failed: %s"
+msgstr ""
+
+#. translators: %s: time, e.g. 05:00
+#: src/Status.php:45
+#, php-format
+msgid "Today's price list has not been published yet. It was due at %s."
+msgstr ""

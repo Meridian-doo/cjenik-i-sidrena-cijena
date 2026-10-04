@@ -26,7 +26,7 @@ const entries = strings.map( ( { text, comment } ) => {
 const headers = {
 	'Project-Id-Version': `${ SLUG } readme`,
 	'Report-Msgid-Bugs-To': `https://wordpress.org/support/plugin/${ SLUG }`,
-	'Last-Translator': 'Meridian d.o.o.',
+	'Last-Translator': 'Meridian, obrt za računalno programiranje',
 	'Language-Team': 'Croatian',
 	Language: 'hr',
 	'MIME-Version': '1.0',

@@ -10,7 +10,7 @@
 // fixture (fixtures.mjs).
 import fs from 'node:fs';
 import path from 'node:path';
-import { ASSETS_DIR, README_PO, ASSET_TEXT, ZIP_PATH, DIST_DIR, SLUG } from './config.mjs';
+import { ASSETS_DIR, README_PO, ASSET_TEXT, LANGUAGES_DIR, ZIP_PATH, DIST_DIR, SLUG } from './config.mjs';
 import { loadRelease, runRules } from './lib/release.mjs';
 import { tempDir, unzip, zipFolder } from './lib/files.mjs';
 import { solidPng } from './lib/png.mjs';
@@ -30,7 +30,7 @@ const keepGoing = flag( 'keep-going' );
 const withFixtures = ! flag( 'no-fixtures' );
 const silent = () => {};
 /** The listing files that live in the repo beside the zip. */
-const LISTING = { assetsDir: ASSETS_DIR, readmePoPath: README_PO, assetTextPath: ASSET_TEXT };
+const LISTING = { assetsDir: ASSETS_DIR, readmePoPath: README_PO, assetTextPath: ASSET_TEXT, languagesDir: LANGUAGES_DIR };
 
 /**
  * Static stages share one fixture pass over all their rules. A live stage may
@@ -59,7 +59,7 @@ function baselineWorkspace() {
 	const dir = tempDir( 'cjenik-fixture' );
 	const unpacked = path.join( dir, 'zip' );
 	unzip( zipPath, unpacked );
-	const listing = { assetsDir: path.join( dir, 'assets' ), readmePoPath: path.join( dir, 'readme-hr.po' ), assetTextPath: path.join( dir, 'asset-text.json' ) };
+	const listing = { assetsDir: path.join( dir, 'assets' ), readmePoPath: path.join( dir, 'readme-hr.po' ), assetTextPath: path.join( dir, 'asset-text.json' ), languagesDir: path.join( dir, 'languages' ) };
 	fs.mkdirSync( listing.assetsDir );
 	const images = { 'icon-128x128.png': [ 128, 128 ], 'icon-256x256.png': [ 256, 256 ], 'banner-772x250.png': [ 772, 250 ], 'banner-1544x500.png': [ 1544, 500 ] };
 	const screenshots = loadRelease( zipPath, LISTING ).readme.screenshots.length;
@@ -75,6 +75,7 @@ function baselineWorkspace() {
 	fs.cpSync( path.join( ASSETS_DIR, 'blueprints' ), path.join( listing.assetsDir, 'blueprints' ), { recursive: true } );
 	fs.copyFileSync( README_PO, listing.readmePoPath );
 	fs.copyFileSync( ASSET_TEXT, listing.assetTextPath );
+	fs.cpSync( LANGUAGES_DIR, listing.languagesDir, { recursive: true } );
 	return { dir, unpacked, plugin: path.join( unpacked, SLUG ), ...listing };
 }
 

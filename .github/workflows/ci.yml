@@ -19,7 +19,7 @@ jobs:
     timeout-minutes: 15
     defaults:
       run:
-        working-directory: cjenik-i-sidrena-cijena
+        working-directory: meridian-digital-cjenik-i-sidrena-cijena
     steps:
       - uses: actions/checkout@v5
       - uses: shivammathur/setup-php@v2

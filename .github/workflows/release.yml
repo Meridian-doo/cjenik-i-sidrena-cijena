@@ -46,7 +46,7 @@ jobs:
       - name: Check the tag matches the plugin version
         id: version
         run: |
-          version=$(sed -nE 's/^[[:space:]*]*Version:[[:space:]]*([0-9.]+).*/\1/p' cjenik-i-sidrena-cijena/cjenik-i-sidrena-cijena.php | head -1)
+          version=$(sed -nE 's/^[[:space:]*]*Version:[[:space:]]*([0-9.]+).*/\1/p' meridian-digital-cjenik-i-sidrena-cijena/meridian-digital-cjenik-i-sidrena-cijena.php | head -1)
           if [[ $GITHUB_REF_TYPE == tag && ${GITHUB_REF_NAME#v} != "$version" ]]; then
             echo "::error::Tag $GITHUB_REF_NAME doesn't match the plugin version $version."
             exit 1

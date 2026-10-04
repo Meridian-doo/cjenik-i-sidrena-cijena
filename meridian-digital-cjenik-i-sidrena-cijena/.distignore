@@ -1,0 +1,15 @@
+# Files and folders left out of the release zip (npm run build).
+# A leading "/" anchors the pattern to the plugin folder; otherwise it matches
+# a file or folder name anywhere. "*" matches within one name.
+/.distignore
+/.phpunit.result.cache
+/bin
+# Translations ship as WordPress.org language packs, not in the zip.
+/languages
+/tests
+/vendor
+/composer.lock
+/phpunit.xml.dist
+/phpcs.xml.dist
+/phpstan.neon.dist
+.DS_Store

@@ -7,7 +7,7 @@
 // Needs Playwright's Chromium: npx playwright install chromium
 import path from 'node:path';
 import { chromium } from 'playwright';
-import { ASSETS_DIR } from './config.mjs';
+import { ASSETS_DIR, SLUG } from './config.mjs';
 import { wp } from './lib/wpenv.mjs';
 
 const SITE = 'http://localhost:8888';
@@ -23,6 +23,8 @@ function prepareSite() {
 	for ( const args of [ [ 'language', 'core', 'install', 'hr' ], [ 'language', 'plugin', 'install', 'woocommerce', 'hr' ], [ 'language', 'theme', 'install', '--all', 'hr' ] ] ) {
 		wp( args, { allowFail: true } );
 	}
+	// Stands in for the plugin's own language pack until translate.wordpress.org has one.
+	evalPhp( `wp_mkdir_p( WP_LANG_DIR . '/plugins' ); copy( WP_PLUGIN_DIR . '/${ SLUG }/languages/${ SLUG }-hr.mo', WP_LANG_DIR . '/plugins/${ SLUG }-hr.mo' );` );
 	wp( [ 'cjenik', 'publish' ] );
 	return {
 		// A product on sale, with the anchor an owner would have imported for 10 Sep 2026.

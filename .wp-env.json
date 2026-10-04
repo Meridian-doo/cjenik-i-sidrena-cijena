@@ -5,7 +5,7 @@
 	"testsEnvironment": false,
 	"plugins": [
 		"https://downloads.wordpress.org/plugin/woocommerce.11.1.2.zip",
-		"./cjenik-i-sidrena-cijena"
+		"./meridian-digital-cjenik-i-sidrena-cijena"
 	],
 	"mappings": {
 		"cjenik-dev": "./dev",

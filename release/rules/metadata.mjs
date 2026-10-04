@@ -84,16 +84,16 @@ export default [
 	},
 	{
 		id: 'metadata.text-domain',
-		title: `The text domain is ${ SLUG } and its languages folder exists`,
+		title: `The text domain is ${ SLUG } and the zip bundles no translations (WordPress.org language packs deliver them)`,
 		run: ( { header, entries } ) => {
 			const problems = [];
 			if ( header.text_domain !== SLUG ) {
 				problems.push( `Text Domain is "${ header.text_domain }", expected "${ SLUG }".` );
 			}
-			const langDir = `${ SLUG }/${ header.domain_path.replace( /^\/|\/$/g, '' ) }/`;
-			if ( ! header.domain_path || ! entries.some( ( e ) => e.startsWith( langDir ) && e !== langDir ) ) {
-				problems.push( `Domain Path "${ header.domain_path }" is missing or empty in the zip.` );
+			if ( header.domain_path ) {
+				problems.push( `Remove the Domain Path header ("${ header.domain_path }"); translations come from translate.wordpress.org.` );
 			}
+			entries.filter( ( e ) => /\.(po|mo|l10n\.php)$/.test( e ) ).forEach( ( e ) => problems.push( `${ e } is a translation file; leave translations to translate.wordpress.org.` ) );
 			return problems;
 		},
 	},
